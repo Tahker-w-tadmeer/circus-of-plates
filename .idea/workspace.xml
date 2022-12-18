@@ -4,17 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4df59bf-a09c-4d3f-82ce-7b4c69f0a35a" name="Changes" comment="" />
+    <list default="true" id="e4df59bf-a09c-4d3f-82ce-7b4c69f0a35a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/engine_v3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/engine_v3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/clown.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Hand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/interfaces/Shape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Bomb.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/DefaultShape.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Plate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CircusOfPlates.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CircusOfPlates.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="j3wkibn1" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2J6X1MvXUxTpLPlxknra9nAAd4L" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -23,9 +54,30 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/fadi/Documents/Fadi/Koleya/Term 5/Programming 2/Assignments/CircusOfPlates/res",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/res" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dev.tahkeer.tadmer.model" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -34,8 +86,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1671399293740</updated>
+      <workItem from="1671399295129" duration="1338000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
