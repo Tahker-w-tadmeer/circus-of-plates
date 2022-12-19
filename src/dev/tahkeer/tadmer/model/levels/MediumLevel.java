@@ -24,6 +24,11 @@ public class MediumLevel implements Level {
     }
 
     @Override
+    public int controlSpeed() {
+        return 10;
+    }
+
+    @Override
     public Level next() {
         return null;
     }

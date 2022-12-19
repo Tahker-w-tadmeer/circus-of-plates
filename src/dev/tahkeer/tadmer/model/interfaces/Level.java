@@ -9,6 +9,8 @@ public interface Level {
 
     int speed();
 
+    int controlSpeed();
+
     Level next();
 
     Level previous();

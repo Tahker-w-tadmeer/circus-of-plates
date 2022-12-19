@@ -13,8 +13,11 @@ public class Clown extends DefaultGameObject implements GameObject {
     private final Hand rightHand;
     private final BufferedImage[] vectors = new BufferedImage[1];
 
-    public Clown() {
-        this.setWidth(160);
+    public Clown(int x, int y) {
+        this.setWidth(200);
+
+        this.setX(x);
+        this.position.y = y - (this.getHeight() - 100);
 
         leftHand = new Hand();
         rightHand = new Hand();
@@ -22,13 +25,16 @@ public class Clown extends DefaultGameObject implements GameObject {
         this.generateImage();
     }
 
+    @Override
+    public void setY(int y) {}
+
     private void generateImage() {
         BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = image.createGraphics();
 
         try {
-            Image icon = ImageIO.read(new File(new File(".").getCanonicalFile() + "/res/clown.png"))
-                    .getScaledInstance(getWidth(), getHeight(), Image.SCALE_FAST);
+            Image icon = ImageIO.read(new File("./res/clown.png"))
+                    .getScaledInstance(getWidth() - getWidth()/3, (getWidth() - getWidth()/3)*619/397, Image.SCALE_FAST);
 
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -43,6 +49,11 @@ public class Clown extends DefaultGameObject implements GameObject {
     protected void setWidth(int width) {
         this.width = width;
         this.height = width * 619 / 397;
+    }
+
+    protected void setHeight(int height) {
+        this.height = height;
+        this.width = height * 397 / 619;
     }
 
     @Override

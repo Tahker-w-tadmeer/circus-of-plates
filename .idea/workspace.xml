@@ -9,6 +9,10 @@
       <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/DefaultGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/DefaultGameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/interfaces/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/interfaces/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/levels/EasyLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/levels/EasyLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/levels/HardLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/levels/HardLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/levels/MediumLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/levels/MediumLevel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/view/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/view/Application.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +104,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1671399293740</updated>
-      <workItem from="1671399295129" duration="10596000" />
+      <workItem from="1671399295129" duration="12798000" />
     </task>
     <servers />
   </component>

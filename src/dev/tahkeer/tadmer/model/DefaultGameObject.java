@@ -9,7 +9,7 @@ abstract public class DefaultGameObject implements Shape {
     private Color color;
     protected int width;
     protected int height;
-    private final Point position = new Point();
+    protected final Point position = new Point();
 
     public Color getColor() {
         return color;
@@ -45,7 +45,9 @@ abstract public class DefaultGameObject implements Shape {
     }
 
     @Override
-    public void setY(int y) {}
+    public void setY(int y) {
+        position.y = y;
+    }
 
     @Override
     abstract public BufferedImage[] getSpriteImages();

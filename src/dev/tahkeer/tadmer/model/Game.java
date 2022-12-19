@@ -58,12 +58,12 @@ public class Game implements World {
 
     @Override
     public int getSpeed() { // in millis
-        return 10;
+        return level.speed();
     }
 
     @Override
     public int getControlSpeed() { // in millis
-        return 10;
+        return level.controlSpeed();
     }
 
     private void changeLevel(Level level) {
@@ -74,7 +74,7 @@ public class Game implements World {
         constant.clear();
 
         for (int i=0; i<level.numberOfClowns(); i++) {
-            controllable.add(new Clown());
+            controllable.add(new Clown(i*400, this.getHeight()-20));
         }
     }
 
