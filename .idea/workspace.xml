@@ -5,20 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4df59bf-a09c-4d3f-82ce-7b4c69f0a35a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/engine_v3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/engine_v3.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/clown.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Hand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/interfaces/Shape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Bomb.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/DefaultShape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Plate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/DefaultGameObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/interfaces/Level.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/levels/EasyLevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/levels/HardLevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/levels/MediumLevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/view/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CircusOfPlates.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CircusOfPlates.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Hand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/interfaces/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/interfaces/Shape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Bomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/DefaultShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/DefaultShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Plate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Plate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +29,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -77,6 +78,29 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="dev.tahkeer.tadmer.model" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dev.tahkeer.tadmer.model" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.tahkeer.tadmer.view.Application" />
+      <module name="CircusOfPlates" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.tahkeer.tadmer.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Application" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -86,7 +110,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1671399293740</updated>
-      <workItem from="1671399295129" duration="1338000" />
+      <workItem from="1671399295129" duration="8700000" />
     </task>
     <servers />
   </component>

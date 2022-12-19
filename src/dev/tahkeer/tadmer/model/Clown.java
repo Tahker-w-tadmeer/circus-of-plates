@@ -2,52 +2,42 @@ package dev.tahkeer.tadmer.model;
 
 import eg.edu.alexu.csd.oop.game.GameObject;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class Clown implements GameObject {
-    private Hand leftHand;
-    private Hand rightHand;
+public class Clown extends DefaultGameObject implements GameObject {
+    private final Hand leftHand;
+    private final Hand rightHand;
 
-    private final Point position = new Point();
+    public Clown() {
+        this.width = 60;
+        this.height = 120;
 
-    @Override
-    public int getX() {
-        return position.x;
-    }
-
-    @Override
-    public void setX(int x) {
-        position.x = x;
-    }
-
-    @Override
-    public int getY() {
-        return position.y;
-    }
-
-    @Override
-    public void setY(int y) {
-        position.y = y;
-    }
-
-    @Override
-    public int getWidth() {
-        return 0;
-    }
-
-    @Override
-    public int getHeight() {
-        return 0;
+        leftHand = new Hand();
+        rightHand = new Hand();
     }
 
     @Override
     public boolean isVisible() {
-        return false;
+        return true;
     }
 
     @Override
     public BufferedImage[] getSpriteImages() {
-        return new BufferedImage[0];
+        BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = image.createGraphics();
+
+        try {
+            Image icon = ImageIO.read(new File(new File(".").getCanonicalFile() + "/res/clown.png"));
+
+            g2d.drawImage(icon, 0, 0, null);
+        } catch (IOException ignored) {}
+
+        return new BufferedImage[]{
+                image
+        };
     }
 }
