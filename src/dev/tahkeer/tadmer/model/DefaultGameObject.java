@@ -45,9 +45,7 @@ abstract public class DefaultGameObject implements Shape {
     }
 
     @Override
-    public void setY(int y) {
-        position.y = y;
-    }
+    public void setY(int y) {}
 
     @Override
     abstract public BufferedImage[] getSpriteImages();

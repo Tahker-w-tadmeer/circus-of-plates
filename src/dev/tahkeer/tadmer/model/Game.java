@@ -46,7 +46,9 @@ public class Game implements World {
 
     @Override
     public boolean refresh() { // if returns false game stops
-        return false;
+
+
+        return true;
     }
 
     @Override
