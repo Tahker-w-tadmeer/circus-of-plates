@@ -55,6 +55,7 @@ public class Clown extends DefaultGameObject implements GameObject {
     protected void setHeight(int height) {
         this.height = height;
         this.width = height * (1 / this.aspectRatio());
+
     }
 
     private int aspectRatio() {
