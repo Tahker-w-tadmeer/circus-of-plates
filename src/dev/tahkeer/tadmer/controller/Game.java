@@ -1,5 +1,7 @@
-package dev.tahkeer.tadmer.model;
+package dev.tahkeer.tadmer.controller;
 
+import dev.tahkeer.tadmer.controller.factories.ShapeFactory;
+import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.interfaces.Level;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import eg.edu.alexu.csd.oop.game.GameObject;
@@ -47,6 +49,19 @@ public class Game implements World {
     @Override
     public boolean refresh() { // if returns false game stops
 
+        // TODO generate obstacles (Plates, bombs, ...) on platforms
+        // TODO Make generated obstacles slide until it falls down USING factory
+
+        ArrayList<Integer> toBeRemoved = new ArrayList<>();
+        for (GameObject obstacle : movable) {
+            obstacle.setY(obstacle.getY() + 1);
+
+            if(obstacle.getY() > this.getHeight()) {
+                toBeRemoved.add(movable.indexOf(obstacle));
+            }
+        }
+
+        toBeRemoved.forEach(movable::remove);
 
         return true;
     }
@@ -57,7 +72,7 @@ public class Game implements World {
     }
 
     @Override
-    public int getSpeed() { // in millis
+    public int getSpeed() { // refresh every x millis
         return level.speed();
     }
 
@@ -75,6 +90,14 @@ public class Game implements World {
 
         for (int i=0; i<level.numberOfClowns(); i++) {
             controllable.add(new Clown(i*400, this.getHeight()-20));
+        }
+
+        for (int i=0; i<level.numberOfQueues(); i++) {
+            // TODO Draw queues/platform
+        }
+
+        for (int i=0; i<7; i++) {
+            movable.add(ShapeFactory.generate(100*i, 100*i));
         }
     }
 

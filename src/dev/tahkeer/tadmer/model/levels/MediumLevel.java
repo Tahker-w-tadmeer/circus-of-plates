@@ -30,7 +30,7 @@ public class MediumLevel implements Level {
 
     @Override
     public Level next() {
-        return null;
+        return new HardLevel();
     }
 
     @Override

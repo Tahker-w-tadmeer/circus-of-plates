@@ -10,7 +10,7 @@ public class EasyLevel implements Level {
 
     @Override
     public int numberOfClowns() {
-        return 2;
+        return 1;
     }
 
     @Override

@@ -50,5 +50,10 @@ abstract public class DefaultGameObject implements Shape {
     }
 
     @Override
+    public boolean isVisible() {
+        return true;
+    }
+
+    @Override
     abstract public BufferedImage[] getSpriteImages();
 }
