@@ -20,7 +20,7 @@ public class HardLevel implements Level {
 
     @Override
     public int speed() {
-        return 10;
+        return 5;
     }
 
     @Override

@@ -49,8 +49,10 @@ public class Game implements World {
     @Override
     public boolean refresh() { // if returns false game stops
 
+        // TODO ZEYAD
+        // TODO USING ShapeFactory
         // TODO generate obstacles (Plates, bombs, ...) on platforms
-        // TODO Make generated obstacles slide until it falls down USING factory
+        // TODO Make generated obstacles slide until it falls down
 
         ArrayList<Integer> toBeRemoved = new ArrayList<>();
         for (GameObject obstacle : movable) {
@@ -60,8 +62,11 @@ public class Game implements World {
                 toBeRemoved.add(movable.indexOf(obstacle));
             }
         }
-
         toBeRemoved.forEach(movable::remove);
+
+        // TODO PETER
+        // TODO Detect if shape is on a clown hand, if so, remove it from the list
+        // TODO Then add it to the clown's hand
 
         return true;
     }
@@ -93,14 +98,11 @@ public class Game implements World {
         }
 
         for (int i=0; i<level.numberOfQueues(); i++) {
+            // TODO YAMEN
             // TODO Draw queues/platform
-        }
-
-        for (int i=0; i<7; i++) {
-            movable.add(ShapeFactory.generate(100*i, 100*i));
+            // TODO Class Platform implementing GameObject extends DefaultGameObject
         }
     }
-
     private static final class GameHolder {
         private static final Game game = new Game();
     }

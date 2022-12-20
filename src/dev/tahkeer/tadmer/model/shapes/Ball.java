@@ -23,8 +23,8 @@ public class Ball extends DefaultShape {
         Graphics2D g2d = image.createGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        double x = this.getWidth() / 2;
-        double y = this.getWidth() / 2;
+        int x = this.getWidth() / 2;
+        int y = this.getWidth() / 2;
         int x1 = (int) ((this.getWidth() / 2.0) - x);
         int y1 = (int) ((this.getWidth() / 2.0) - y);
         int x2 = (int) ((this.getWidth() / 2.0) + x);
