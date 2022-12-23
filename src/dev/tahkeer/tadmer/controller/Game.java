@@ -9,18 +9,28 @@ import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game implements World {
 
-    private final ArrayList<GameObject> movable = new ArrayList<>();
+
+    private final CopyOnWriteArrayList<GameObject> movable = new CopyOnWriteArrayList<>();
+
     private final ArrayList<GameObject> controllable = new ArrayList<>();
     private final ArrayList<GameObject> constant = new ArrayList<>();
     private Level level;
 
     private Game() {
         changeLevel(new EasyLevel());
+        Timer t = new Timer();
+        t.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                genrate();
+            }
+        }, 0, 1500);
+
     }
 
     @Override
@@ -47,9 +57,34 @@ public class Game implements World {
     public int getHeight() { // frame height
         return 720;
     }
-
+    private void genrate() {
+        var sh=ShapeFactory.generate(10,0);
+        movable.add(sh);
+        var shh=ShapeFactory.generate(10,300);
+        movable.add(shh);
+        var shhh=ShapeFactory.generate(1200,0);
+        movable.add(shhh);
+        var shhhh=ShapeFactory.generate(1200,300);
+        movable.add(shhhh);
+    }
     @Override
-    public boolean refresh() { // if returns false game stops
+    public boolean refresh() {
+        // if returns false game stops
+        ArrayList<Integer> toBeRemoved = new ArrayList<>();
+        for (GameObject obstacle : movable) {
+            if(obstacle.getX()<=1600&&obstacle.getX()>600){
+                obstacle.setX(obstacle.getX() - 2);
+            }
+            if(obstacle.getX()>=400&&obstacle.getX()<450||obstacle.getX()>=500&&obstacle.getX()<600){
+                obstacle.setY(obstacle.getY() + 1);
+            }
+            else {
+                obstacle.setX(obstacle.getX() + 1);
+            }
+            if(obstacle.getY() == this.getHeight()) {
+                toBeRemoved.add(movable.indexOf(obstacle));
+            }
+        }
 
         // TODO ZEYAD
         // TODO USING ShapeFactory
@@ -121,7 +156,10 @@ public class Game implements World {
         }
     }
     private static final class GameHolder {
-        private static final Game game = new Game();
+        private static final Game game;
+        static {
+            game = new Game();
+        }
     }
 
     public static Game getInstance() {
