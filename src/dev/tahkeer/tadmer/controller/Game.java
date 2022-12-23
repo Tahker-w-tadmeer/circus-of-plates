@@ -65,7 +65,9 @@ public class Game implements World {
 
             if(obstacle.getY() >= clown.getY()-10
                     && obstacle.getY()<=clown.getY()+20
-                    && (obstacle.getX()+obstacle.getWidth()<=clown.getX()+80)
+                    && obstacle.getX() >= clown.getX()-10
+                    && obstacle.getX() <= clown.getX() + clown.getWidth()
+                    && obstacle.getX()+obstacle.getWidth()<=clown.getX()+80
             ){
                 movable.remove(obstacle);
                 constant.add(obstacle);
