@@ -9,8 +9,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class Clown extends DefaultGameObject implements GameObject {
-    private final Hand leftHand;
-    private final Hand rightHand;
+    private final Hand leftHand = new Hand();
+    private final Hand rightHand = new Hand();
     private final BufferedImage[] vectors = new BufferedImage[1];
 
     public Clown(int x, int y) {
@@ -19,14 +19,27 @@ public class Clown extends DefaultGameObject implements GameObject {
         this.setX(x);
         this.position.y = y - (this.getHeight() - this.getHeight()/3);
 
-        leftHand = new Hand();
-        rightHand = new Hand();
-
         this.generateImage();
     }
 
     @Override
+    public void setX(int x) {
+        super.setX(x);
+
+        leftHand.setX(x);
+        rightHand.setX(x + this.getWidth());
+    }
+
+    @Override
     public void setY(int y) {}
+
+    public void addToLeftHand(GameObject shape) {
+        leftHand.shapeLand(shape);
+    }
+
+    public void addToRightHand(GameObject shape) {
+        rightHand.shapeLand(shape);
+    }
 
     private void generateImage() {
         BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
@@ -35,11 +48,19 @@ public class Clown extends DefaultGameObject implements GameObject {
         try {
             int widthDivided = getWidth() - getWidth()/3;
             Image icon = ImageIO.read(new File("./res/colored_clown.png"))
-                    .getScaledInstance(widthDivided, widthDivided*this.aspectRatio(), Image.SCALE_FAST);
+                    .getScaledInstance(widthDivided, widthDivided * this.aspectRatio(), Image.SCALE_FAST);
 
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
             g2d.drawImage(icon, 0, 0, null);
+
+            for (BufferedImage shapeImage : leftHand.getSpriteImages()) {
+                g2d.drawImage(shapeImage,0, 0, null);
+            }
+
+            for (BufferedImage shapeImage : rightHand.getSpriteImages()) {
+                g2d.drawImage(shapeImage, 0, 0, null);
+            }
 
             g2d.dispose();
         } catch (IOException ignored) {}
@@ -55,7 +76,6 @@ public class Clown extends DefaultGameObject implements GameObject {
     protected void setHeight(int height) {
         this.height = height;
         this.width = height * (1 / this.aspectRatio());
-
     }
 
     private int aspectRatio() {

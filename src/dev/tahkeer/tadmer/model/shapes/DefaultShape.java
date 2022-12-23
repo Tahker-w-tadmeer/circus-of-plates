@@ -8,6 +8,13 @@ import java.awt.*;
 abstract public class DefaultShape extends DefaultGameObject implements Shape {
     private Color color;
 
+    public DefaultShape(int x, int y, Color color) {
+        this.setColor(color);
+
+        this.setX(x);
+        this.setY(y);
+    }
+
     public Color getColor() {
         return color;
     }

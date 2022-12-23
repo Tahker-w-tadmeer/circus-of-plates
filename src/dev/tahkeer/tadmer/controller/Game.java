@@ -92,25 +92,32 @@ public class Game implements World {
             }
         }
 
-        for (GameObject clown : controllable) {
+
+        for (GameObject clownObject : controllable) {
+            Clown clown = (Clown) clownObject;
+
             for (GameObject obstacle : movable) {
                 if (obstacle.getY() >= clown.getY() - 10
                         && obstacle.getY() <= clown.getY() + 20
                         && obstacle.getX() >= clown.getX() - 10
                         && obstacle.getX() <= clown.getX() + clown.getWidth()
                         && obstacle.getX() + obstacle.getWidth() <= clown.getX() + 80
-                ) {
+                ) { // left hand
                     movable.remove(obstacle);
-                    constant.add(obstacle);
+
+                    clown.addToLeftHand(obstacle);
+
                     break;
                 } else if (obstacle.getY() >= clown.getY() - 10
                         && obstacle.getY() <= clown.getY() + 20
                         && obstacle.getX() >= clown.getX() - 10 + 160
                         && obstacle.getX() <= clown.getX() + clown.getWidth()
                         && obstacle.getX() + obstacle.getWidth() <= clown.getX() + 80 + 160
-                ) {
+                ) { // right hand
                     movable.remove(obstacle);
-                    constant.add(obstacle);
+
+                    clown.addToRightHand(obstacle);
+
                     break;
                 } else if (obstacle.getY() >= clown.getY() + clown.getHeight()) {
                     movable.remove(obstacle);

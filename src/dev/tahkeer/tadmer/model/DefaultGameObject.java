@@ -54,6 +54,14 @@ abstract public class DefaultGameObject implements Shape {
         return true;
     }
 
+    protected void setWidth(int width) {
+        this.width = width;
+    }
+
+    protected void setHeight(int height) {
+        this.height = height;
+    }
+
     @Override
     abstract public BufferedImage[] getSpriteImages();
 }

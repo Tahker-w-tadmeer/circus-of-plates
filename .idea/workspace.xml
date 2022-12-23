@@ -7,6 +7,14 @@
     <list default="true" id="5248abc0-4ae6-4010-b80c-0b96111839ea" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/factories/ShapeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/factories/ShapeFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/DefaultGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/DefaultGameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Hand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Ball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Bomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/DefaultShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/DefaultShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Plate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Plate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,11 +27,24 @@
   <component name="MacroExpansionManager">
     <option name="directoryName" value="68u714bg" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2JKLkXr0VJz1cv7JyBmfRTkDcEa" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
@@ -47,8 +68,20 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5248abc0-4ae6-4010-b80c-0b96111839ea" name="Changes" comment="" />
+      <created>1671821972279</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1671821972279</updated>
+      <workItem from="1671821973722" duration="3850000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
