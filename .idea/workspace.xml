@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4df59bf-a09c-4d3f-82ce-7b4c69f0a35a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Bomb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/factories/ShapeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/factories/ShapeFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Ball.java" afterDir="false" />
     </list>
     <list id="9e5340bb-ba1c-4f6a-9fdf-8cc08342eaa6" name="Changes by peter anton" comment="" />
     <list id="60fa63de-989a-4d24-9d05-b6a8de24b855" name="Changes by zeyad" comment="" />
