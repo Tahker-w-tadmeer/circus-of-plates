@@ -5,9 +5,11 @@ import dev.tahkeer.tadmer.model.shapes.Ball;
 import dev.tahkeer.tadmer.model.shapes.Plate;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Random;
 
-public class ShapeFactory {
+public class ShapeFactory  {
+   public ArrayList<Shape> movable=new ArrayList<>();
 
     private static final Color[] colors = new Color[]{
             Color.blue,
@@ -32,12 +34,12 @@ public class ShapeFactory {
 
     public static Shape generate(String type, int x, int y) {
         if("plate".equalsIgnoreCase(type))
-            return new Plate(x, y, colors[new Random().nextInt(colors.length)]);
+            return new Plate(x, y+37, colors[new Random().nextInt(colors.length)]);
 
         if("ball".equalsIgnoreCase(type))
             return new Ball(x, y, colors[new Random().nextInt(colors.length)]);
 
-        return new Plate(x, y, colors[new Random().nextInt(colors.length)]);
+        return new Plate(x, y+37, colors[new Random().nextInt(colors.length)]);
     }
 
 }
