@@ -8,10 +8,7 @@ import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game implements World {
@@ -23,16 +20,10 @@ public class Game implements World {
     private final ArrayList<GameObject> constant = new ArrayList<>();
     private Level level;
 
+    Timer t = new Timer();
+
     private Game() {
         changeLevel(new EasyLevel());
-        Timer t = new Timer();
-        t.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                generate();
-            }
-        }, 0, 1500);
-
     }
 
     @Override
@@ -60,22 +51,35 @@ public class Game implements World {
         return 720;
     }
 
+    private boolean shouldGenerateShape(int percentage) {
+        return new Random().nextInt(100 / percentage) == 0;
+    }
+
     private void generate() {
         Shape upperLeft = ShapeFactory.generate(10,0);
-        movable.add(upperLeft);
         Shape bottomLeft = ShapeFactory.generate(10,300);
-        movable.add (bottomLeft);
         Shape upperRight = ShapeFactory.generate(1200,0);
-        movable.add(upperRight);
         Shape bottomRight = ShapeFactory.generate(1200,300);
-        movable.add(bottomRight);
+
+        if(shouldGenerateShape(50))
+            movable.add(bottomLeft);
+
+        if(shouldGenerateShape(25))
+            movable.add(upperRight);
+
+        if(shouldGenerateShape(75))
+            movable.add(upperLeft);
+
+        if(shouldGenerateShape(60))
+            movable.add(bottomRight);
     }
 
     @Override
     public boolean refresh() {
-        ArrayList<GameObject> toBeRemoved = new ArrayList<>();
+
+//        ArrayList<GameObject> toBeRemoved = new ArrayList<>();
         for (GameObject obstacle : movable) {
-            if(obstacle.getX()<=1600&&obstacle.getX()>600){
+            if(obstacle.getX()<=1600 && obstacle.getX()>600) {
                 obstacle.setX(obstacle.getX() - 2);
             }
             if(obstacle.getX()>=400&&obstacle.getX()<450||obstacle.getX()>=500&&obstacle.getX()<600){
@@ -84,12 +88,10 @@ public class Game implements World {
             else {
                 obstacle.setX(obstacle.getX() + 1);
             }
-            if(obstacle.getY() == this.getHeight()) {
-                toBeRemoved.add(obstacle);
-            }
+//            if(obstacle.getY() == this.getHeight()) {
+//                toBeRemoved.add(obstacle);
+//            }
         }
-
-        toBeRemoved.forEach(movable::remove);
 
         // TODO ZEYAD
         // TODO USING ShapeFactory
@@ -100,14 +102,11 @@ public class Game implements World {
 //        System.out.println(shape.getX() + " " + shape.getY());
 
         for (GameObject obstacle : movable) {
-
-             obstacle.setY(obstacle.getY() + 1);
-
             if(obstacle.getY() >= clown.getY()-10
                     && obstacle.getY()<=clown.getY()+20
                     && obstacle.getX() >= clown.getX()-10
                     && obstacle.getX() <= clown.getX() + clown.getWidth()
-                    && obstacle.getX()+obstacle.getWidth()<=clown.getX()+80
+                    && obstacle.getX() + obstacle.getWidth()<=clown.getX()+80
             ){
                 movable.remove(obstacle);
                 constant.add(obstacle);
@@ -117,7 +116,6 @@ public class Game implements World {
                 movable.remove(obstacle);
                 break;
             }
-
         }
 
         // TODO PETER
@@ -143,6 +141,16 @@ public class Game implements World {
 
     private void changeLevel(Level level) {
         this.level = level;
+
+        t.cancel();
+        t = new Timer();
+
+        t.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                generate();
+            }
+        }, 0, level.speed() * 100L);
 
         movable.clear();
         controllable.clear();
