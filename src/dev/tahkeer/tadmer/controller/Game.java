@@ -9,13 +9,10 @@ import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game implements World {
 
-
-    private final CopyOnWriteArrayList<GameObject> movable = new CopyOnWriteArrayList<>();
-
+    private final ArrayList<GameObject> movable = new ArrayList<>();
     private final ArrayList<GameObject> controllable = new ArrayList<>();
     private final ArrayList<GameObject> constant = new ArrayList<>();
     private Level level;
@@ -74,10 +71,15 @@ public class Game implements World {
             movable.add(bottomRight);
     }
 
+    long lastTime = System.currentTimeMillis();
+
     @Override
     public boolean refresh() {
+        if(System.currentTimeMillis() - lastTime > level.speed() * 100L) {
+            generate();
+            lastTime = System.currentTimeMillis();
+        }
 
-//        ArrayList<GameObject> toBeRemoved = new ArrayList<>();
         for (GameObject obstacle : movable) {
             if(obstacle.getX()<=1600 && obstacle.getX()>600) {
                 obstacle.setX(obstacle.getX() - 2);
@@ -88,44 +90,32 @@ public class Game implements World {
             else {
                 obstacle.setX(obstacle.getX() + 1);
             }
-//            if(obstacle.getY() == this.getHeight()) {
-//                toBeRemoved.add(obstacle);
-//            }
         }
 
-        // TODO ZEYAD
-        // TODO USING ShapeFactory
-        // TODO generate obstacles (Plates, bombs, ...) on platforms
-        // TODO Make generated obstacles slide until it falls down
-        Clown clown = (Clown) controllable.get(0);
-//        Shape shape=(Shape) controllable.get(1);
-//        System.out.println(shape.getX() + " " + shape.getY());
-
-        for (GameObject obstacle : movable) {
-            if(obstacle.getY() >= clown.getY()-10
-                    && obstacle.getY()<=clown.getY()+20
-                    && obstacle.getX() >= clown.getX()-10
-                    && obstacle.getX() <= clown.getX() + clown.getWidth()
-                    && obstacle.getX() + obstacle.getWidth()<=clown.getX()+80
-            ){
-                movable.remove(obstacle);
-                constant.add(obstacle);
-                break;
-            }
-            else if(obstacle.getY() >= clown.getY()-10
-                    && obstacle.getY()<=clown.getY()+20
-                    && obstacle.getX() >= clown.getX()-10+160
-                    && obstacle.getX() <= clown.getX() + clown.getWidth()
-                    && obstacle.getX()+obstacle.getWidth()<=clown.getX()+80+160
-            ){
-                movable.remove(obstacle);
-                constant.add(obstacle);
-                break;
-            }
-
-            else if (obstacle.getY() >= clown.getY()+clown.getHeight()) {
-                movable.remove(obstacle);
-                break;
+        for (GameObject clown : controllable) {
+            for (GameObject obstacle : movable) {
+                if (obstacle.getY() >= clown.getY() - 10
+                        && obstacle.getY() <= clown.getY() + 20
+                        && obstacle.getX() >= clown.getX() - 10
+                        && obstacle.getX() <= clown.getX() + clown.getWidth()
+                        && obstacle.getX() + obstacle.getWidth() <= clown.getX() + 80
+                ) {
+                    movable.remove(obstacle);
+                    constant.add(obstacle);
+                    break;
+                } else if (obstacle.getY() >= clown.getY() - 10
+                        && obstacle.getY() <= clown.getY() + 20
+                        && obstacle.getX() >= clown.getX() - 10 + 160
+                        && obstacle.getX() <= clown.getX() + clown.getWidth()
+                        && obstacle.getX() + obstacle.getWidth() <= clown.getX() + 80 + 160
+                ) {
+                    movable.remove(obstacle);
+                    constant.add(obstacle);
+                    break;
+                } else if (obstacle.getY() >= clown.getY() + clown.getHeight()) {
+                    movable.remove(obstacle);
+                    break;
+                }
             }
         }
 
@@ -152,15 +142,15 @@ public class Game implements World {
     private void changeLevel(Level level) {
         this.level = level;
 
-        t.cancel();
-        t = new Timer();
-
-        t.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                generate();
-            }
-        }, 0, level.speed() * 100L);
+//        t.cancel();
+//        t = new Timer();
+//
+//        t.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                generate();
+//            }
+//        }, 0, level.speed() * 100L);
 
         movable.clear();
         controllable.clear();
