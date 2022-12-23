@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5248abc0-4ae6-4010-b80c-0b96111839ea" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/factories/ShapeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/factories/ShapeFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/DefaultGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/DefaultGameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Hand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Bomb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/DefaultShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/DefaultShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Plate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Plate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +37,8 @@
     "WebServerToolWindowFactoryState": "false",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
   }
 }]]></component>
   <component name="RunManager">
@@ -76,7 +69,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1671821972279</updated>
-      <workItem from="1671821973722" duration="3850000" />
+      <workItem from="1671821973722" duration="4458000" />
     </task>
     <servers />
   </component>

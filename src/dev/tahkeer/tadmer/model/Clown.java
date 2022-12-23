@@ -33,12 +33,12 @@ public class Clown extends DefaultGameObject implements GameObject {
     @Override
     public void setY(int y) {}
 
-    public void addToLeftHand(GameObject shape) {
-        leftHand.shapeLand(shape);
+    public boolean addToLeftHand(GameObject shape) {
+        return leftHand.shapeLand(shape);
     }
 
-    public void addToRightHand(GameObject shape) {
-        rightHand.shapeLand(shape);
+    public boolean addToRightHand(GameObject shape) {
+        return rightHand.shapeLand(shape);
     }
 
     private void generateImage() {
