@@ -112,13 +112,23 @@ public class Game implements World {
                 constant.add(obstacle);
                 break;
             }
+            else if(obstacle.getY() >= clown.getY()-10
+                    && obstacle.getY()<=clown.getY()+20
+                    && obstacle.getX() >= clown.getX()-10+160
+                    && obstacle.getX() <= clown.getX() + clown.getWidth()
+                    && obstacle.getX()+obstacle.getWidth()<=clown.getX()+80+160
+            ){
+                movable.remove(obstacle);
+                constant.add(obstacle);
+                break;
+            }
+
             else if (obstacle.getY() >= clown.getY()+clown.getHeight()) {
                 movable.remove(obstacle);
                 break;
             }
         }
 
-        // TODO PETER
         // TODO Then add it to the clown's hand
 
         return true;
@@ -163,7 +173,7 @@ public class Game implements World {
 
         for (int i=0; i<level.numberOfQueues(); i++) {
 
-            movable.add(ShapeFactory.generate(100,0));
+            movable.add(ShapeFactory.generate(500,0));
 
             // TODO YAMEN
             // TODO Draw queues/platform
