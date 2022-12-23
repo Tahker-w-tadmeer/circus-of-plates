@@ -4,9 +4,7 @@ import dev.tahkeer.tadmer.model.interfaces.Level;
 
 public class EasyLevel implements Level {
     @Override
-    public String name() {
-        return "Easy";
-    }
+    public String name() {return "Easy";}
 
     @Override
     public int numberOfClowns() {

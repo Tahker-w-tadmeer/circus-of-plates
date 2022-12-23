@@ -56,14 +56,14 @@ public class Game implements World {
         return 720;
     }
     private void genrate() {
-        var sh=ShapeFactory.generate(10,0);
-        movable.add(sh);
-        var shh=ShapeFactory.generate(10,300);
-        movable.add(shh);
-        var shhh=ShapeFactory.generate(1200,0);
-        movable.add(shhh);
-        var shhhh=ShapeFactory.generate(1200,300);
-        movable.add(shhhh);
+        var upper_left=ShapeFactory.generate(10,0);
+        movable.add(upper_left);
+        var bottom_left=ShapeFactory.generate(10,300);
+        movable.add (bottom_left);
+        var upper_right=ShapeFactory.generate(1200,0);
+        movable.add(upper_right);
+        var bottom_right=ShapeFactory.generate(1200,300);
+        movable.add(bottom_right);
     }
     @Override
     public boolean refresh() {
