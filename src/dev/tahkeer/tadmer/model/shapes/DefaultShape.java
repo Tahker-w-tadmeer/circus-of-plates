@@ -7,6 +7,7 @@ import java.awt.*;
 
 abstract public class DefaultShape extends DefaultGameObject implements Shape {
     private Color color;
+    private boolean shouldMoveHorizontally = true;
 
     public DefaultShape(int x, int y, Color color) {
         this.setColor(color);
@@ -21,6 +22,16 @@ abstract public class DefaultShape extends DefaultGameObject implements Shape {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public void setShouldMoveHorizontally(boolean shouldMoveHorizontally) {
+        this.shouldMoveHorizontally = shouldMoveHorizontally;
+    }
+
+    public void setY(int y) {
+        if(! shouldMoveHorizontally) return;
+
+        super.setY(y);
     }
 
     @Override

@@ -42,7 +42,11 @@ public class Clown extends DefaultGameObject implements GameObject {
     }
 
     private void generateImage() {
-        BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
+        BufferedImage image = new BufferedImage(
+                getWidth(),
+                getHeight(),
+                BufferedImage.TYPE_INT_ARGB
+        );
         Graphics2D g2d = image.createGraphics();
 
         try {
@@ -53,14 +57,18 @@ public class Clown extends DefaultGameObject implements GameObject {
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
             g2d.drawImage(icon, 0, 0, null);
-
-            for (BufferedImage shapeImage : leftHand.getSpriteImages()) {
-                g2d.drawImage(shapeImage,0, 0, null);
-            }
-
-            for (BufferedImage shapeImage : rightHand.getSpriteImages()) {
-                g2d.drawImage(shapeImage, 0, 0, null);
-            }
+//
+//            int lastY = this.getHeight();
+//            for (BufferedImage shapeImage : leftHand.getSpriteImages()) {
+//                g2d.drawImage(shapeImage,0, lastY, null);
+//                lastY += shapeImage.getHeight();
+//            }
+//
+//            lastY = this.getHeight();
+//            for (BufferedImage shapeImage : rightHand.getSpriteImages()) {
+//                g2d.drawImage(shapeImage, this.getWidth()-20, lastY, null);
+//                lastY += shapeImage.getHeight();
+//            }
 
             g2d.dispose();
         } catch (IOException ignored) {}

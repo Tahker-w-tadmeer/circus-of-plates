@@ -5,19 +5,19 @@ import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.interfaces.Level;
 import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
+import dev.tahkeer.tadmer.model.shapes.DefaultShape;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game implements World {
 
     private final ArrayList<GameObject> movable = new ArrayList<>();
-    private final ArrayList<GameObject> controllable = new ArrayList<>();
+    private final CopyOnWriteArrayList<GameObject> controllable = new CopyOnWriteArrayList<>();
     private final ArrayList<GameObject> constant = new ArrayList<>();
     private Level level;
-
-    Timer t = new Timer();
 
     private Game() {
         changeLevel(new EasyLevel());
@@ -94,7 +94,8 @@ public class Game implements World {
 
 
         for (GameObject clownObject : controllable) {
-            Clown clown = (Clown) clownObject;
+            if(! (clownObject instanceof Clown clown))
+                continue;
 
             for (GameObject obstacle : movable) {
                 if (obstacle.getY() >= clown.getY() - 10
@@ -107,6 +108,10 @@ public class Game implements World {
 
                     clown.addToLeftHand(obstacle);
 
+                    controllable.add(obstacle);
+
+                    ((DefaultShape) obstacle).setShouldMoveHorizontally(false);
+
                     break;
                 } else if (obstacle.getY() >= clown.getY() - 10
                         && obstacle.getY() <= clown.getY() + 20
@@ -118,6 +123,8 @@ public class Game implements World {
 
                     clown.addToRightHand(obstacle);
 
+                    controllable.add(obstacle);
+                    ((DefaultShape) obstacle).setShouldMoveHorizontally(false);
                     break;
                 } else if (obstacle.getY() >= clown.getY() + clown.getHeight()) {
                     movable.remove(obstacle);
@@ -125,8 +132,6 @@ public class Game implements World {
                 }
             }
         }
-
-        // TODO Then add it to the clown's hand
 
         return true;
     }
@@ -149,16 +154,6 @@ public class Game implements World {
     private void changeLevel(Level level) {
         this.level = level;
 
-//        t.cancel();
-//        t = new Timer();
-//
-//        t.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                generate();
-//            }
-//        }, 0, level.speed() * 100L);
-
         movable.clear();
         controllable.clear();
         constant.clear();
@@ -166,7 +161,6 @@ public class Game implements World {
         for (int i=0; i<level.numberOfClowns(); i++) {
             controllable.add(new Clown(i*400, this.getHeight()-20));
         }
-
 
         for (int i=0; i<level.numberOfQueues(); i++) {
 

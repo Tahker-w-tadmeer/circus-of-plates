@@ -26,7 +26,7 @@ public class Hand {
 
     public int getYTotal()
     {
-        return y + shapes.stream().mapToInt(GameObject::getHeight).sum();
+        return y + heightOfShapes();
     }
 
     public boolean shapeLand(GameObject shapeObject) {
@@ -50,6 +50,10 @@ public class Hand {
         shapes.add(shapeObject);
 
         return false;
+    }
+
+    public int heightOfShapes() {
+        return shapes.stream().mapToInt(GameObject::getHeight).sum();
     }
 
     public ArrayList<BufferedImage> getSpriteImages() {
