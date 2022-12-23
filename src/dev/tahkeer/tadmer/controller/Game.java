@@ -3,28 +3,23 @@ package dev.tahkeer.tadmer.controller;
 import dev.tahkeer.tadmer.controller.factories.ShapeFactory;
 import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.interfaces.Level;
-import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
-import dev.tahkeer.tadmer.model.shapes.DefaultShape;
-import dev.tahkeer.tadmer.model.shapes.Plate;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.*;
+
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game implements World {
 
 
-    private final ArrayList<GameObject> movable = new ArrayList<>();
+    private final CopyOnWriteArrayList<GameObject> movable = new CopyOnWriteArrayList<>();
+
     private final ArrayList<GameObject> controllable = new ArrayList<>();
     private final ArrayList<GameObject> constant = new ArrayList<>();
     private Level level;
 
-    private Game() throws InterruptedException {
+    private Game() {
         changeLevel(new EasyLevel());
         Timer t = new Timer();
         t.schedule(new TimerTask() {
@@ -61,38 +56,14 @@ public class Game implements World {
         return 720;
     }
     private void genrate() {
-      ArrayList<GameObject> kk= new ArrayList<>();
         var sh=ShapeFactory.generate(10,0);
-       // movable.add(sh);
-        kk.add(sh);
+        movable.add(sh);
         var shh=ShapeFactory.generate(10,300);
-      //  movable.add(shh);
-        kk.add(shh);
+        movable.add(shh);
         var shhh=ShapeFactory.generate(1200,0);
-       // movable.add(shhh);
-        kk.add(shhh);
+        movable.add(shhh);
         var shhhh=ShapeFactory.generate(1200,300);
-      //  movable.add(shhhh);
-        kk.add(shhhh);
-        movable.addAll(kk);
-//        for (int i = 0; i < 8; i++) {
-//            var sh=ShapeFactory.generate(10+(i*60),0);
-//            movable.add(sh);
-//            var shh=ShapeFactory.generate(10+(i*60),300);
-//            movable.add(shh);
-//            var shhh=ShapeFactory.generate(1200-(i*60),0);
-//            movable.add(shhh);
-//            var shhhh=ShapeFactory.generate(1200-(i*60),300);
-//            movable.add(shhhh);
-//        }
-//        var sh=ShapeFactory.generate(10,0);
-//        movable.add(sh);
-//        var shh=ShapeFactory.generate(10,300);
-//        movable.add(shh);
-//        var shhh=ShapeFactory.generate(1200,0);
-//        movable.add(shhh);
-//        var shhhh=ShapeFactory.generate(1200,300);
-//        movable.add(shhhh);
+        movable.add(shhhh);
     }
     @Override
     public boolean refresh() {
@@ -169,13 +140,8 @@ public class Game implements World {
     }
     private static final class GameHolder {
         private static final Game game;
-
         static {
-            try {
-                game = new Game();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            game = new Game();
         }
     }
 
