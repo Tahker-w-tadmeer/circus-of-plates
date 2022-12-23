@@ -9,13 +9,10 @@ public class Bomb extends DefaultShape {
 
     public Bomb(int x, int y, Color color) {
         this.setColor(color);
-
         this.width = 60;
         this.height = 60;
-
         this.setX(x);
         this.setY(y);
-
         this.generateImage();
     }
 
