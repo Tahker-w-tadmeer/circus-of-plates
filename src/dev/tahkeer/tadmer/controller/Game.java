@@ -139,7 +139,7 @@ public class Game implements World {
                     rightcheck = new Point(rightqueue.get(rightqueue.size() - 1).getX(), rightqueue.get(rightqueue.size() - 1).getY());
                     if (rightcheck.distance(obstacle.getX(), obstacle.getY()) >= 5&&rightcheck.distance(obstacle.getX(), obstacle.getY()) <20&&obstacle.getX()<600&& rightqueue.size()<22) {
                         movable.remove(obstacle);
-                        System.out.println(obstacle.getY()+"da el y .. dah el x: "+obstacle.getX());
+                       // System.out.println(obstacle.getY()+"da el y .. dah el x: "+obstacle.getX());
                         obstacle.setY(obstacle.getY() - 5);
                         controllable.add(obstacle);
                         rightqueue.add(obstacle);

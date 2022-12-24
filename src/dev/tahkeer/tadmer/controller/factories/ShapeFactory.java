@@ -4,6 +4,7 @@ import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.shapes.Ball;
 import dev.tahkeer.tadmer.model.shapes.Bomb;
 import dev.tahkeer.tadmer.model.shapes.Plate;
+import dev.tahkeer.tadmer.model.shapes.bullet;
 
 import java.awt.*;
 import java.util.Random;
@@ -22,7 +23,7 @@ public class ShapeFactory  {
     };
 
     private static final String[] shapes = new String[] {
-            "plate", "ball", "bomb"
+            "plate", "ball", "bomb","bullet"
     };
 
     public static Shape generate(int x, int y) {
@@ -33,11 +34,13 @@ public class ShapeFactory  {
         if("plate".equalsIgnoreCase(type))
             return new Plate(x, y+37, colors[new Random().nextInt(colors.length)]);
 
-        if("ball".equalsIgnoreCase(type))
-            return new Ball(x, y, colors[new Random().nextInt(colors.length)]);
+        if("bullet".equalsIgnoreCase(type))
+            return new bullet(x, y, colors[new Random().nextInt(colors.length)]);
 
         if("bomb".equalsIgnoreCase(type))
             return new Bomb(x, y, colors[new Random().nextInt(colors.length)]);
+        if("ball".equalsIgnoreCase(type))
+            return new Ball(x, y, colors[new Random().nextInt(colors.length)]);
 
         return new Plate(x, y+37, colors[new Random().nextInt(colors.length)]);
     }

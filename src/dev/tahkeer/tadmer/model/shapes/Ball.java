@@ -30,7 +30,7 @@ public class Ball extends DefaultShape {
         g2d.setColor(this.getColor());
         g2d.fillOval(x1+3, y1+3, x2-6, y2-6);
         g2d.setColor(Color.white);
-        g2d.drawArc(x1+12, y1+8, x2-22, y2-22, 15, 40);
+        g2d.drawArc(x, y, x2-22, y2-22, 15, 40);
 
         g2d.dispose();
 
