@@ -8,13 +8,10 @@ public class Plate extends DefaultShape {
     private final BufferedImage[] vectors = new BufferedImage[1];
 
     public Plate(int x, int y, Color color) {
-        this.setColor(color);
+        super(x, y, color);
 
-        this.width = 80;
-        this.height = 15;
-
-        this.setX(x);
-        this.setY(y);
+        this.setWidth(80);
+        this.setHeight(15);
 
         this.generateImage();
     }
