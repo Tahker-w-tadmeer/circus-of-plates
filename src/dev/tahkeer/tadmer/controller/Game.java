@@ -7,6 +7,7 @@ import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import dev.tahkeer.tadmer.model.shapes.Platform;
 import dev.tahkeer.tadmer.model.shapes.DefaultShape;
+
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
@@ -17,6 +18,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game implements World {
     Point rightcheck = new Point();
+    ArrayList<Platform> arrayPlatform;
     Point leftcheck = new Point();
     CopyOnWriteArrayList<GameObject> rightqueue=new CopyOnWriteArrayList<>();
     CopyOnWriteArrayList<GameObject> leftqueue=new CopyOnWriteArrayList<>();
@@ -186,9 +188,15 @@ public class Game implements World {
         }
 
         for (int i=0; i<level.numberOfQueues(); i++) {
-            Platform platform = new Platform(500,100,this.getWidth(),this.getHeight(),0);
-            controllable.add(platform);
-            System.out.println("ana da5alt hena");
+            Platform platform = new Platform(400-(100*i),30+60*i,this.getWidth(),this.getHeight(),Color.black,0);
+            Platform platform2 = new Platform(400-(100*i),30+60*i,this.getWidth(),this.getHeight(),Color.black,1);
+            arrayPlatform.add(platform);
+            arrayPlatform.add(platform2);
+            constant.add(platform);
+            constant.add(platform2);
+
+
+
 
             movable.add(ShapeFactory.generate(500,0));
         }
