@@ -23,7 +23,7 @@ public class EasyLevel implements Level {
 
     @Override
     public int controlSpeed() {
-        return 10;
+        return 20;
     }
 
     @Override

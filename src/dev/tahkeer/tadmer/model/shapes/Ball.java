@@ -16,7 +16,7 @@ public class Ball extends DefaultShape {
     }
 
     private void generateImage() {
-        BufferedImage image = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        BufferedImage image = new BufferedImage(this.getWidth()-6, this.getHeight()-6, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = image.createGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         int x = this.getWidth() / 2;
