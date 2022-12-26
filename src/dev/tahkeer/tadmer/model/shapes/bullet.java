@@ -3,10 +3,10 @@ package dev.tahkeer.tadmer.model.shapes;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Ball extends DefaultShape {
+public class bullet extends DefaultShape {
     private final BufferedImage[] vectors = new BufferedImage[1];
 
-    public Ball(int x, int y, Color color) {
+    public bullet(int x, int y, Color color) {
         super(x, y, color);
 
         this.setWidth(60);
@@ -20,17 +20,17 @@ public class Ball extends DefaultShape {
         Graphics2D g2d = image.createGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         int x = this.getWidth() / 2;
-        int y = this.getWidth() ;
-        int x1 = (int) ((this.getWidth() / 10f) );
-        int y1 = (int) ((this.getWidth() / 10f) );
+        int y = this.getWidth()*2 ;
+        int x1 = (int) ((this.getWidth() / 4f) );
+        int y1 = (int) ((this.getWidth() / 4f) );
         int x2 = (int) ((this.getWidth() ) );
-        int y2 = (int) ((this.getWidth() ) );
+        int y2 = (int) ((this.getWidth() /4) );
 
         g2d.setStroke(new BasicStroke(3));
         g2d.setColor(this.getColor());
         g2d.fillOval(x1+3, y1+3, x2-6, y2-6);
         g2d.setColor(Color.white);
-        g2d.drawArc(x, y, x2-22, y2-22, 15, 40);
+        g2d.drawArc(x1+12, y1+8, x2-22, y2-22, 15, 40);
 
         g2d.dispose();
 
