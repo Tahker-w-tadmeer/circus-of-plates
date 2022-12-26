@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5248abc0-4ae6-4010-b80c-0b96111839ea" name="Changes" comment="">
+    <list default="true" id="e4df59bf-a09c-4d3f-82ce-7b4c69f0a35a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Platform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/factories/ShapeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/factories/ShapeFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Ball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/Game.java" afterDir="false" />
     </list>
+    <list id="60fa63de-989a-4d24-9d05-b6a8de24b855" name="Changes by zeyad" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,13 +43,36 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Term 5/Project/Final Project Clowns/circus-of-plates&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeWithMe&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/res" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/res" />
+      <recent name="$PROJECT_DIR$/lib" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dev.tahkeer.tadmer.model" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dev.tahkeer.tadmer.model" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.tahkeer.tadmer.view.Application" />
@@ -76,8 +100,12 @@
       <created>1671821972279</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1671821972279</updated>
-      <workItem from="1671821973722" duration="5547000" />
+      <updated>1671399293740</updated>
+      <workItem from="1671399295129" duration="23420000" />
+      <workItem from="1671494757240" duration="2801000" />
+      <workItem from="1671802538479" duration="7655000" />
+      <workItem from="1671832436686" duration="379000" />
+      <workItem from="1671886750034" duration="988000" />
     </task>
     <servers />
   </component>

@@ -5,6 +5,7 @@ import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.interfaces.Level;
 import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
+import dev.tahkeer.tadmer.model.shapes.Platform;
 import dev.tahkeer.tadmer.model.shapes.DefaultShape;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
@@ -185,12 +186,11 @@ public class Game implements World {
         }
 
         for (int i=0; i<level.numberOfQueues(); i++) {
+            Platform platform = new Platform(500,100,this.getWidth(),this.getHeight(),0);
+            controllable.add(platform);
+            System.out.println("ana da5alt hena");
 
             movable.add(ShapeFactory.generate(500,0));
-
-            // TODO YAMEN
-            // TODO Draw queues/platform
-            // TODO Class Platform implementing GameObject extends DefaultGameObject
         }
     }
     private static final class GameHolder {
