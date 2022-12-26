@@ -12,6 +12,7 @@ public class Clown extends DefaultGameObject implements GameObject {
     private final Hand leftHand = new Hand();
     private final Hand rightHand = new Hand();
     private final BufferedImage[] vectors = new BufferedImage[1];
+    private BufferedImage clownImage;
 
     public Clown(int x, int y) {
         this.setWidth(350);
@@ -42,12 +43,12 @@ public class Clown extends DefaultGameObject implements GameObject {
     }
 
     private void generateImage() {
-        BufferedImage image = new BufferedImage(
+        clownImage = new BufferedImage(
                 getWidth(),
-                getHeight(),
+                getHeight() + Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes()),
                 BufferedImage.TYPE_INT_ARGB
         );
-        Graphics2D g2d = image.createGraphics();
+        Graphics2D g2d = clownImage.createGraphics();
 
         try {
             int widthDivided = getWidth() - getWidth()/3;
@@ -57,23 +58,11 @@ public class Clown extends DefaultGameObject implements GameObject {
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
             g2d.drawImage(icon, 0, 0, null);
-//
-//            int lastY = this.getHeight();
-//            for (BufferedImage shapeImage : leftHand.getSpriteImages()) {
-//                g2d.drawImage(shapeImage,0, lastY, null);
-//                lastY += shapeImage.getHeight();
-//            }
-//
-//            lastY = this.getHeight();
-//            for (BufferedImage shapeImage : rightHand.getSpriteImages()) {
-//                g2d.drawImage(shapeImage, this.getWidth()-20, lastY, null);
-//                lastY += shapeImage.getHeight();
-//            }
 
             g2d.dispose();
         } catch (IOException ignored) {}
 
-        vectors[0] = image;
+        vectors[0] = clownImage;
     }
 
     protected void setWidth(int width) {
@@ -97,6 +86,22 @@ public class Clown extends DefaultGameObject implements GameObject {
 
     @Override
     public BufferedImage[] getSpriteImages() {
+        Graphics2D g2d = clownImage.createGraphics();
+
+        int lastY = this.getHeight();
+        for (BufferedImage shapeImage : leftHand.getSpriteImages()) {
+            g2d.drawImage(shapeImage, 0, lastY, null);
+            lastY += shapeImage.getHeight();
+        }
+
+        lastY = this.getHeight();
+        for (BufferedImage shapeImage : rightHand.getSpriteImages()) {
+            g2d.drawImage(shapeImage, this.getWidth()-20, lastY, null);
+            lastY += shapeImage.getHeight();
+        }
+
+        g2d.dispose();
+
         return vectors;
     }
 }

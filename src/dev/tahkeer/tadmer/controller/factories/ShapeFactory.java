@@ -6,27 +6,34 @@ import dev.tahkeer.tadmer.model.shapes.Bomb;
 import dev.tahkeer.tadmer.model.shapes.Plate;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.Random;
 
 public class ShapeFactory  {
     private static final Color[] colors = new Color[]{
             Color.blue,
-            Color.cyan,
             Color.orange,
             Color.green,
             Color.red,
-            Color.gray,
-            Color.magenta,
-            Color.pink,
-            Color.green,
     };
 
-    private static final String[] shapes = new String[] {
-            "plate", "ball", "bomb"
-    };
+    private static final HashMap<String, Integer> shapes = new HashMap<>() {{
+        put("plate", 50);
+        put("ball", 48);
+        put("bomb", 2);
+    }};
 
     public static Shape generate(int x, int y) {
-        return generate(shapes[new Random().nextInt(shapes.length)], x, y);
+        String type = "";
+
+        for (String key : shapes.keySet()) {
+            if (new Random().nextInt(100 / shapes.get(key)) == 0) {
+                type = key;
+                break;
+            }
+        }
+
+        return generate(type, x, y);
     }
 
     public static Shape generate(String type, int x, int y) {

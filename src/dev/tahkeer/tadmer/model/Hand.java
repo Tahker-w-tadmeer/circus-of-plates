@@ -65,7 +65,7 @@ public class Hand {
             shape.setY(y + lastHeight.get() + this.getY());
             lastHeight.set(lastHeight.get() + shape.getHeight());
 
-            vectors.addAll(Arrays.stream(shape.getSpriteImages()).toList());
+            vectors.add(shape.getSpriteImages()[0]);
         });
 
         return vectors;
