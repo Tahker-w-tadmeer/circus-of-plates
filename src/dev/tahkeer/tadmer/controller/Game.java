@@ -5,11 +5,9 @@ import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.interfaces.Level;
 import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
-import dev.tahkeer.tadmer.model.shapes.DefaultShape;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -150,7 +148,7 @@ public class Game implements World {
         constant.clear();
 
         for (int i = 0; i < level.numberOfClowns(); i++) {
-            controllable.add(new Clown(i * 400, this.getHeight() - 20));
+            controllable.add(new Clown(i * 400, this.getHeight()));
         }
 
         for (int i = 0; i < level.numberOfQueues(); i++) {

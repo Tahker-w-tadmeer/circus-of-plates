@@ -24,11 +24,6 @@ public class Hand {
         return y;
     }
 
-    public int getYTotal()
-    {
-        return y + heightOfShapes();
-    }
-
     public boolean shapeLand(GameObject shapeObject) {
         if(shapes.size() < 2) {
             shapes.add(shapeObject);
@@ -37,12 +32,13 @@ public class Hand {
         }
 
         Shape shape = (Shape) shapeObject;
-        Shape lastShape = (Shape) shapes.get(shapes.size() - 1);
-        Shape beforeLastShape = (Shape) shapes.get(shapes.size() - 2);
+        int size = shapes.size();
+        Shape lastShape = (Shape) shapes.get(size - 1);
+        Shape beforeLastShape = (Shape) shapes.get(size - 2);
 
-        if(shape.equals(lastShape) && shape.equals(beforeLastShape)) {
-            shapes.remove(shapes.size() - 1);
-            shapes.remove(shapes.size() - 2);
+        if(shape.getColor().equals(lastShape.getColor()) && shape.getColor().equals(beforeLastShape.getColor())) {
+            shapes.remove(size - 1);
+            shapes.remove(size - 2);
 
             return true;
         }

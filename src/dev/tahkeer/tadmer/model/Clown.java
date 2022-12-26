@@ -14,18 +14,20 @@ public class Clown extends DefaultGameObject implements GameObject {
     private final BufferedImage[] vectors = new BufferedImage[1];
     private Image scaledImage;
 
+    private final int yOfClown;
+
     public Clown(int x, int y) {
-        this.setWidth(350);
+        this.setWidth(300);
 
         this.setX(x);
-        this.position.y = y - (this.getHeight() - this.getHeight()/3);
+        yOfClown = y;
 
         this.generateImage();
 
         int widthDivided = getWidth() - getWidth()/3;
         try {
             scaledImage = ImageIO.read(new File("./res/colored_clown.png"))
-                    .getScaledInstance(widthDivided, widthDivided * this.aspectRatio(), Image.SCALE_FAST);
+                    .getScaledInstance(widthDivided, (int) (widthDivided * this.aspectRatio()), Image.SCALE_SMOOTH);
         } catch (IOException ignored) {}
     }
 
@@ -49,34 +51,38 @@ public class Clown extends DefaultGameObject implements GameObject {
     }
 
     private BufferedImage generateImage() {
+        int realHeight = getHeight() + Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes());
+
         BufferedImage clownImage = new BufferedImage(
-                getWidth(),
-                getHeight() + Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes()),
+                getWidth()*2/3,
+                realHeight,
                 BufferedImage.TYPE_INT_ARGB
         );
         Graphics2D g2d = clownImage.createGraphics();
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        g2d.drawImage(scaledImage, 0, 0, null);
+        g2d.drawImage(scaledImage, 0, realHeight-this.getHeight(), null);
 
         g2d.dispose();
+
+        this.position.y = yOfClown - (realHeight - this.getHeight()/3) - 20;
 
         return clownImage;
     }
 
     protected void setWidth(int width) {
         this.width = width;
-        this.height = width * this.aspectRatio();
+        this.height = (int) (width * this.aspectRatio());
     }
 
     protected void setHeight(int height) {
         this.height = height;
-        this.width = height * (1 / this.aspectRatio());
+        this.width = (int) (height / this.aspectRatio());
     }
 
-    private int aspectRatio() {
-        return 743 / 561;
+    private double aspectRatio() {
+        return 743 / 561D;
     }
 
     @Override
@@ -90,15 +96,17 @@ public class Clown extends DefaultGameObject implements GameObject {
 
         Graphics2D g2d = image.createGraphics();
 
-        int lastY = leftHand.heightOfShapes();
+        final int biggestY = Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes());
+
+        int lastY = biggestY;
         for (BufferedImage shapeImage : leftHand.getSpriteImages()) {
             g2d.drawImage(shapeImage, 0, lastY, null);
             lastY -= shapeImage.getHeight();
         }
 
-        lastY = rightHand.heightOfShapes();
+        lastY = biggestY;
         for (BufferedImage shapeImage : rightHand.getSpriteImages()) {
-            g2d.drawImage(shapeImage, this.getWidth()-200, lastY, null);
+            g2d.drawImage(shapeImage, this.getWidth()-180, lastY, null);
             lastY -= shapeImage.getHeight();
         }
 

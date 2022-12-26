@@ -19,7 +19,7 @@ public class ShapeFactory  {
 
     private static final HashMap<String, Integer> shapes = new HashMap<>() {{
         put("plate", 50);
-        put("ball", 48);
+//        put("ball", 48);
         put("bomb", 2);
     }};
 
