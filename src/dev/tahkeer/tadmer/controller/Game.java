@@ -5,9 +5,7 @@ import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.interfaces.Level;
 import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
-
 import dev.tahkeer.tadmer.model.shapes.Platform;
-
 import dev.tahkeer.tadmer.model.shapes.DefaultShape;
 
 import eg.edu.alexu.csd.oop.game.GameObject;
@@ -125,7 +123,7 @@ public class Game implements World {
                 } }
                 if(rightqueue.size()==0){
                      if (obstacle.getY() >= clown.getY() - 10
-                        && obstacle.getY() <= clown.getY() + 20
+                        && obstacle.getY() <= clown.getY() + 5
                         && obstacle.getX() >= clown.getX() - 10 + 160
                         && obstacle.getX() <= clown.getX() + clown.getWidth()
                         && obstacle.getX() + obstacle.getWidth() <= clown.getX() + 80 + 160
@@ -142,8 +140,9 @@ public class Game implements World {
                 }}
                 if(rightqueue.size()>0) {
                     rightcheck = new Point(rightqueue.get(rightqueue.size() - 1).getX(), rightqueue.get(rightqueue.size() - 1).getY());
-                    if (rightcheck.distance(obstacle.getX(), obstacle.getY()) >= 5&&rightcheck.distance(obstacle.getX(), obstacle.getY()) <20) {
+                    if (rightcheck.distance(obstacle.getX(), obstacle.getY()) >= 5&&rightcheck.distance(obstacle.getX(), obstacle.getY()) <20&&obstacle.getX()<600&& rightqueue.size()<22) {
                         movable.remove(obstacle);
+                       // System.out.println(obstacle.getY()+"da el y .. dah el x: "+obstacle.getX());
                         obstacle.setY(obstacle.getY() - 5);
                         controllable.add(obstacle);
                         rightqueue.add(obstacle);
@@ -152,7 +151,7 @@ public class Game implements World {
                 }
                 if(leftqueue.size()>0) {
                     leftcheck = new Point(leftqueue.get(leftqueue.size() - 1).getX(), leftqueue.get(leftqueue.size() - 1).getY());
-                    if (leftcheck.distance(obstacle.getX(), obstacle.getY()) >= 5&&leftcheck.distance(obstacle.getX(), obstacle.getY()) <20) {
+                    if (leftcheck.distance(obstacle.getX(), obstacle.getY()) >= 5&&leftcheck.distance(obstacle.getX(), obstacle.getY()) <20&&obstacle.getY()>13&& leftqueue.size()<22) {
                         movable.remove(obstacle);
                         obstacle.setY(obstacle.getY() - 5);
                         controllable.add(obstacle);
@@ -200,8 +199,6 @@ public class Game implements World {
 
 
             movable.add(ShapeFactory.generate(500,0));
-
-
         }
     }
     private static final class GameHolder {
