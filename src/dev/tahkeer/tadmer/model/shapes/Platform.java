@@ -12,7 +12,7 @@ public class Platform extends DefaultShape {
     private final BufferedImage[] vectors = new BufferedImage[1];
     int x2,y2;
     public Platform(int length,int height,int width,int height1,int flag) {
-
+        super(0, height, Color.black);
         if (flag == 0)
         {    this.setX(0);
             this.x2 = length;
@@ -39,6 +39,7 @@ public class Platform extends DefaultShape {
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+        g2d.setColor(this.getColor());
         g2d.setStroke(new BasicStroke(4));
         g2d.drawLine(this.getX(), this.getY(), this.x2, this.y2);
 
