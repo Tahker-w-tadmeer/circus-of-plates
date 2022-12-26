@@ -5,9 +5,11 @@ import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.interfaces.Level;
 import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
+import dev.tahkeer.tadmer.model.shapes.Platform;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
 
+import java.awt.*;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -17,6 +19,7 @@ public class Game implements World {
     private final CopyOnWriteArrayList<GameObject> controllable = new CopyOnWriteArrayList<>();
     private final ArrayList<GameObject> constant = new ArrayList<>();
     private Level level;
+    private final ArrayList<Platform> arrayPlatform = new ArrayList<>();
 
     private Game() {
         changeLevel(new EasyLevel());
@@ -152,12 +155,14 @@ public class Game implements World {
         }
 
         for (int i = 0; i < level.numberOfQueues(); i++) {
+            Platform platform = new Platform(400 - (100 * i), 30 + 60 * i, this.getWidth(), this.getHeight(), Color.black, 0);
+            Platform platform2 = new Platform(400 - (100 * i), 30 + 60 * i, this.getWidth(), this.getHeight(), Color.black, 1);
+            arrayPlatform.add(platform);
+            arrayPlatform.add(platform2);
+            constant.add(platform);
+            constant.add(platform2);
 
             movable.add(ShapeFactory.generate(500, 0));
-
-            // TODO YAMEN
-            // TODO Draw queues/platform
-            // TODO Class Platform implementing GameObject extends DefaultGameObject
         }
     }
 
