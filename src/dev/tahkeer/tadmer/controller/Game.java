@@ -2,6 +2,7 @@ package dev.tahkeer.tadmer.controller;
 
 import dev.tahkeer.tadmer.controller.factories.ShapeFactory;
 import dev.tahkeer.tadmer.model.Clown;
+import dev.tahkeer.tadmer.model.Score;
 import dev.tahkeer.tadmer.model.interfaces.Level;
 import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
@@ -106,7 +107,8 @@ public class Game implements World {
                         && obstacle.getX() + obstacle.getWidth() <= clown.getX() + 80
                 ) { // left hand
                     movable.remove(obstacle);
-                    clown.addToLeftHand(obstacle);
+                    if (clown.addToLeftHand(obstacle))
+                        Score.getInstance().addScore();
                     break;
                 }
 
@@ -117,7 +119,8 @@ public class Game implements World {
                         && obstacle.getX() + obstacle.getWidth() <= clown.getX() + 80 + 160
                 ) { // right hand
                     movable.remove(obstacle);
-                    clown.addToRightHand(obstacle);
+                    if (clown.addToRightHand(obstacle))
+                        Score.getInstance().addScore();
                     break;
                 } else if (obstacle.getY() >= clown.getY() + clown.getHeight()) {
                     movable.remove(obstacle);
@@ -129,8 +132,8 @@ public class Game implements World {
     }
 
     @Override
-    public String getStatus() { // bar at the bottom
-        return level.name() + " | Score: " + 0;
+    public String getStatus() {
+        return level.name() + " | Score: " + Score.getInstance().getScore();
     }
 
     @Override
@@ -161,8 +164,7 @@ public class Game implements World {
             arrayPlatform.add(platform2);
             constant.add(platform);
             constant.add(platform2);
-
-            movable.add(ShapeFactory.generate(500, 0));
+            movable.add(ShapeFactory.generate(500,0));
         }
     }
 
