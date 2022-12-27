@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2e3bf1e-bb94-4182-b605-d0414c957106" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Score.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/factories/ShapeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/factories/ShapeFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Hand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/Ball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/DefaultShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/shapes/DefaultShape.java" afterDir="false" />
     </list>
     <list id="60fa63de-989a-4d24-9d05-b6a8de24b855" name="Changes by zeyad" comment="" />
     <option name="SHOW_DIALOG" value="false" />
