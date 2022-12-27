@@ -49,12 +49,14 @@ public class Clown extends DefaultGameObject implements GameObject {
         Point shapePoint = new Point(shape.getX(), shape.getY());
 
         Point leftHandPoint = new Point(leftHand.getX(), leftHand.getY());
-        if(leftHandPoint.distance(shapePoint) < 15) {
+        if(Math.abs(leftHandPoint.y - shapePoint.y) < 5
+                && Math.abs(leftHandPoint.x - shapePoint.x) < 50) {
             return leftHand;
         }
 
         Point rightHandPoint = new Point(rightHand.getX(), rightHand.getY());
-        if(rightHandPoint.distance(shapePoint) < 15) {
+        if(Math.abs(rightHandPoint.y - shapePoint.y) < 5
+                && Math.abs(rightHandPoint.x - shapePoint.x) < 50) {
             return rightHand;
         }
 
