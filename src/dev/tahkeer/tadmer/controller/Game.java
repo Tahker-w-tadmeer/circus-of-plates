@@ -57,7 +57,9 @@ public class Game implements World {
 
     private void generate() {
         for (Platform platform: arrayPlatform) {
-            movable.add(ShapeFactory.generate(platform.getStartX(),platform.getY()-53));
+            movable.add(ShapeFactory.generate(platform.getX(),platform.getY()-53));
+
+            movable.add(ShapeFactory.generate(platform.getX() + this.getWidth()-100,platform.getY()-53));
         }
     }
 
@@ -71,14 +73,28 @@ public class Game implements World {
         }
 
               for (GameObject obstacle : movable) {
+                  boolean shapeMoved = false;
 
-                  Platform onPlatform = null;
                   for (Platform platform : arrayPlatform) {
-                      if(Math.abs(obstacle.getY() - platform.getY()) < 15) {
+                      if(platform.isShapeLeft(obstacle)) {
 
-                          onPlatform = platform;
+                          obstacle.setX(obstacle.getX() + 1);
+                          shapeMoved = true;
+
                           break;
                       }
+
+                      if(platform.isShapeRight(obstacle)) {
+
+                          obstacle.setX(obstacle.getX() - 1);
+                          shapeMoved = true;
+
+                          break;
+                      }
+                  }
+
+                  if(! shapeMoved) {
+                      obstacle.setY(obstacle.getY() + 1);
                   }
 
 //                  int i=0;
@@ -178,12 +194,11 @@ public class Game implements World {
         }
 
         for (int i=0; i<level.numberOfQueues(); i++) {
-            Platform platform = new Platform(0,30+60*i, 400-(100*i), Color.black);
-            Platform platform2 = new Platform(this.getWidth() - (400-(100*i)),30+60*i, 400-(100*i), Color.black);
+            Platform platform = new Platform(this.getWidth(),30+60*i, 400-(100*i), Color.black);
+
             arrayPlatform.add(platform);
-            arrayPlatform.add(platform2);
             constant.add(platform);
-            constant.add(platform2);
+
             movable.add(ShapeFactory.generate(500,0));
         }
     }
