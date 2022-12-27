@@ -102,11 +102,10 @@ public class Game implements World {
                 continue;
 
             for (GameObject obstacle : movable) {
-                if (obstacle.getY() >= clown.getY() - 10
-                        && obstacle.getY() <= clown.getY() + 20
-                        && obstacle.getX() >= clown.getX() - 10
-                        && obstacle.getX() <= clown.getX() + clown.getWidth()
-                        && obstacle.getX() + obstacle.getWidth() <= clown.getX() + 80
+                if (obstacle.getY() >= clown.getY()-1 && obstacle.getY() <= clown.getY()+5
+                        && obstacle.getX() >= clown.getX()
+                        && obstacle.getX() <= clown.getX() + obstacle.getWidth()
+                        && obstacle.getX() + obstacle.getWidth() <= clown.getX() + obstacle.getWidth()
                 ) { // left hand
                     movable.remove(obstacle);
                     if (clown.addToLeftHand(obstacle)) {
@@ -114,19 +113,20 @@ public class Game implements World {
                     }
                     break;
                 }
+                  System.out.println(clown.getX()+" dah awel case");
+                  System.out.println(clown.getX() + clown.getWidth()+" dah tany case");
 
-                if (obstacle.getY() >= clown.getY() - 10
-                        && obstacle.getY() <= clown.getY() + 20
-                        && obstacle.getX() >= clown.getX() - 10 + 160
-                        && obstacle.getX() <= clown.getX() + clown.getWidth()
-                        && obstacle.getX() + obstacle.getWidth() <= clown.getX() + 80 + 160
+                if (obstacle.getY() >= clown.getY()-1&& obstacle.getY() <= clown.getY() + 5
+                        && obstacle.getX() <= clown.getWidth()-80
+                        && obstacle.getX() >= clown.getX() + clown.getWidth()
+                        && obstacle.getX() + obstacle.getWidth() <= clown.getX() +obstacle.getWidth()+120
                 ) { // right hand
                     movable.remove(obstacle);
                     if (clown.addToRightHand(obstacle)) {
                         Score.getInstance().addScore();
                     }
                     break;
-                } else if (obstacle.getY() >= clown.getY() + clown.getHeight()) {
+                }  if (obstacle.getY() >= clown.getY() + clown.getHeight()) {
                     movable.remove(obstacle);
                     break;
                 }
