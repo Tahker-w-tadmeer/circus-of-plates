@@ -9,10 +9,29 @@ public class Hand {
     private final ArrayList<GameObject> shapes = new ArrayList<>();
     private int x = 0;
     private int y = 0;
+
+    private Integer originalY;
+
     public void setX(int x)
     {
         this.x = x;
     }
+
+    public void setY(int y)
+    {
+        if(originalY == null)
+        {
+            this.y = originalY = y;
+            return;
+        }
+
+        this.y = originalY - y;
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
     public int getY()
     {
         return y;
@@ -21,6 +40,9 @@ public class Hand {
     public boolean shapeLand(GameObject shapeObject) {
         if(shapes.size() < 2) {
             shapes.add(shapeObject);
+
+            this.setY(this.heightOfShapes());
+
             return false;
         }
         Shape shape = (Shape) shapeObject;
@@ -32,14 +54,19 @@ public class Hand {
             shapes.remove(size - 1);
             shapes.remove(size - 2);
 
+            this.setY(this.heightOfShapes());
             return true;
         }
         shapes.add(shapeObject);
+        this.setY(this.heightOfShapes());
+
         return false;
     }
+
     public int heightOfShapes() {
         return shapes.stream().mapToInt(GameObject::getHeight).sum();
     }
+
     public ArrayList<BufferedImage> getSpriteImages() {
         ArrayList<BufferedImage> vectors = new ArrayList<>();
         AtomicReference<Integer> lastHeight = new AtomicReference<>(0);

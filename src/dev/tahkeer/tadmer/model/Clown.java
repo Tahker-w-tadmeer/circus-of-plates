@@ -22,6 +22,9 @@ public class Clown extends DefaultGameObject implements GameObject {
         this.setX(x);
         yOfClown = y;
 
+        leftHand.setY(this.getHeight());
+        rightHand.setY(this.getHeight());
+
         this.generateImage();
 
         int widthDivided = getWidth() - getWidth()/3;
@@ -36,18 +39,26 @@ public class Clown extends DefaultGameObject implements GameObject {
         super.setX(x);
 
         leftHand.setX(x);
-        rightHand.setX(x + this.getWidth());
+        rightHand.setX(x + (getWidth() / 3) + 20);
     }
 
     @Override
     public void setY(int y) {}
 
-    public boolean addToLeftHand(GameObject shape) {
-        return leftHand.shapeLand(shape);
-    }
+    public Hand getContainsHand(GameObject shape) {
+        Point shapePoint = new Point(shape.getX(), shape.getY());
 
-    public boolean addToRightHand(GameObject shape) {
-        return rightHand.shapeLand(shape);
+        Point leftHandPoint = new Point(leftHand.getX(), leftHand.getY());
+        if(leftHandPoint.distance(shapePoint) < 15) {
+            return leftHand;
+        }
+
+        Point rightHandPoint = new Point(rightHand.getX(), rightHand.getY());
+        if(rightHandPoint.distance(shapePoint) < 15) {
+            return rightHand;
+        }
+
+        return null;
     }
     public int getrealHeight() {
         return getHeight() + Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes()) ;
