@@ -1,16 +1,29 @@
 package dev.tahkeer.tadmer.model;
 
-import dev.tahkeer.tadmer.controller.Game;
 
-public class Score {
-    private Score() {
-    }
+import dev.tahkeer.tadmer.model.interfaces.Model;
+import dev.tahkeer.tadmer.model.interfaces.ModelEventListner;
+
+import java.util.ArrayList;
+
+public class Score implements Model {
+
+    private Score() {}
+    public static ArrayList<ModelEventListner> listeners = new ArrayList<>();
+
+    public static void addListener(ModelEventListner toAdd) {
+        listeners.add(toAdd)
+        ;}
+
 
     private int score = 0;
 
     public void addScore() {
+        for (ModelEventListner hl : listeners)
+            hl.createdModel(this);
         score += 10;
     }
+
 
     public void removeScore() {
         score -= 10;

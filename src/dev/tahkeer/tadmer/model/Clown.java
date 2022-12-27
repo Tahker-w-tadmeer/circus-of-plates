@@ -40,8 +40,7 @@ public class Clown extends DefaultGameObject implements GameObject {
 
         leftHand.setX(x);
         rightHand.setX(x + 2*(getWidth()*2/ 19)+150 );
-        System.out.println(leftHand.getX()+" dah elstart");
-        System.out.println(rightHand.getX()+" dah elplate elyemen");
+
     }
 
     @Override

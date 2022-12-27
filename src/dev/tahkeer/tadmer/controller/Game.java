@@ -5,6 +5,7 @@ import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.Hand;
 import dev.tahkeer.tadmer.model.Score;
 import dev.tahkeer.tadmer.model.interfaces.Level;
+import dev.tahkeer.tadmer.model.interfaces.Model;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import dev.tahkeer.tadmer.model.levels.HardLevel;
 import dev.tahkeer.tadmer.model.shapes.Platform;
@@ -25,6 +26,12 @@ public class Game implements World {
 
     private Game() {
         changeLevel(new EasyLevel());
+
+    }
+
+    private void updateScore(Model model) {
+        if (model!=null)
+            Score.getInstance().addScore();
     }
 
     @Override
@@ -81,20 +88,20 @@ public class Game implements World {
 
             for (Platform platform : platforms) {
                 if (platform.isShapeLeft(obstacle)) {
-                    obstacle.setX(obstacle.getX() + 1);
+                    obstacle.setX(obstacle.getX() + 3);
                     shapeMoved = true;
                     break;
                 }
 
                 if (platform.isShapeRight(obstacle)) {
-                    obstacle.setX(obstacle.getX() - 1);
+                    obstacle.setX(obstacle.getX() - 3);
                     shapeMoved = true;
                     break;
                 }
             }
 
             if (!shapeMoved) {
-                obstacle.setY(obstacle.getY() + 1);
+                obstacle.setY(obstacle.getY() + 3);
             }
         }
 
@@ -107,11 +114,9 @@ public class Game implements World {
                 if(hand == null) {
                     continue;
                 }
-
                 movable.remove(obstacle);
-
                 if(hand.shapeLand(obstacle)) {
-                    Score.getInstance().addScore();
+                    Score.addListener(this::updateScore);
                 }
             }
         }
