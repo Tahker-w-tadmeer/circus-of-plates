@@ -6,6 +6,7 @@ import dev.tahkeer.tadmer.model.Hand;
 import dev.tahkeer.tadmer.model.Score;
 import dev.tahkeer.tadmer.model.interfaces.Level;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
+import dev.tahkeer.tadmer.model.levels.HardLevel;
 import dev.tahkeer.tadmer.model.shapes.Platform;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
