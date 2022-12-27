@@ -3,8 +3,8 @@ import dev.tahkeer.tadmer.model.interfaces.Shape;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
+
 public class Hand {
     private final ArrayList<GameObject> shapes = new ArrayList<>();
     private int x = 0;
@@ -17,21 +17,21 @@ public class Hand {
     {
         return y;
     }
-    public int getYTotal()
-    {
-        return y + heightOfShapes();
-    }
+
     public boolean shapeLand(GameObject shapeObject) {
         if(shapes.size() < 2) {
             shapes.add(shapeObject);
             return false;
         }
         Shape shape = (Shape) shapeObject;
-        Shape lastShape = (Shape) shapes.get(shapes.size() - 1);
-        Shape beforeLastShape = (Shape) shapes.get(shapes.size() - 2);
-        if(shape.equals(lastShape) && shape.equals(beforeLastShape)) {
-            shapes.remove(shapes.size() - 1);
-            shapes.remove(shapes.size() - 2);
+        int size = shapes.size();
+        Shape lastShape = (Shape) shapes.get(size - 1);
+        Shape beforeLastShape = (Shape) shapes.get(size - 2);
+
+        if(shape.getColor().equals(lastShape.getColor()) && shape.getColor().equals(beforeLastShape.getColor())) {
+            shapes.remove(size - 1);
+            shapes.remove(size - 2);
+
             return true;
         }
         shapes.add(shapeObject);
@@ -47,7 +47,8 @@ public class Hand {
             shape.setX(x);
             shape.setY(y + lastHeight.get() + this.getY());
             lastHeight.set(lastHeight.get() + shape.getHeight());
-            vectors.addAll(Arrays.stream(shape.getSpriteImages()).toList());
+
+            vectors.add(shape.getSpriteImages()[0]);
         });
         return vectors;
     }
