@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/controller/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dev/tahkeer/tadmer/model/Clown.java" afterDir="false" />
     </list>
-    <list id="60fa63de-989a-4d24-9d05-b6a8de24b855" name="Changes by zeyad" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,6 +40,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
@@ -95,7 +95,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5248abc0-4ae6-4010-b80c-0b96111839ea" name="Changes" comment="" />
+      <changelist id="f2e3bf1e-bb94-4182-b605-d0414c957106" name="Changes" comment="" />
       <created>1671821972279</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -105,6 +105,7 @@
       <workItem from="1671802538479" duration="7655000" />
       <workItem from="1671832436686" duration="379000" />
       <workItem from="1671886750034" duration="988000" />
+      <workItem from="1672139150983" duration="599000" />
     </task>
     <servers />
   </component>
@@ -121,5 +122,8 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

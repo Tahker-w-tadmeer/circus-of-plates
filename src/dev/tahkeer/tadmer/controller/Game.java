@@ -4,7 +4,6 @@ import dev.tahkeer.tadmer.controller.factories.ShapeFactory;
 import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.Score;
 import dev.tahkeer.tadmer.model.interfaces.Level;
-import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import dev.tahkeer.tadmer.model.shapes.Platform;
 import eg.edu.alexu.csd.oop.game.GameObject;
@@ -56,22 +55,14 @@ public class Game implements World {
     }
 
     private void generate() {
-        Shape upperLeft = ShapeFactory.generate(10, 0);
-        Shape bottomLeft = ShapeFactory.generate(10, 300);
-        Shape upperRight = ShapeFactory.generate(1200, 0);
-        Shape bottomRight = ShapeFactory.generate(1200, 300);
+        for (Platform platform : arrayPlatform) {
 
-        if (shouldGenerateShape(50))
-            movable.add(bottomLeft);
+            if (shouldGenerateShape(30))
+                movable.add(ShapeFactory.generate(platform.getX(), platform.getY() - 53));
 
-        if (shouldGenerateShape(25))
-            movable.add(upperRight);
-
-        if (shouldGenerateShape(50))
-            movable.add(upperLeft);
-
-        if (shouldGenerateShape(40))
-            movable.add(bottomRight);
+            if (shouldGenerateShape(40))
+                movable.add(ShapeFactory.generate(platform.getX() + this.getWidth() - 100, platform.getY() - 53));
+        }
     }
 
     long lastTime = System.currentTimeMillis();
@@ -84,13 +75,24 @@ public class Game implements World {
         }
 
         for (GameObject obstacle : movable) {
-            if (obstacle.getX() <= 1600 && obstacle.getX() > 600) {
-                obstacle.setX(obstacle.getX() - 2);
+            boolean shapeMoved = false;
+
+            for (Platform platform : arrayPlatform) {
+                if (platform.isShapeLeft(obstacle)) {
+                    obstacle.setX(obstacle.getX() + 1);
+                    shapeMoved = true;
+                    break;
+                }
+
+                if (platform.isShapeRight(obstacle)) {
+                    obstacle.setX(obstacle.getX() - 1);
+                    shapeMoved = true;
+                    break;
+                }
             }
-            if (obstacle.getX() >= 400 && obstacle.getX() < 450 || obstacle.getX() >= 500 && obstacle.getX() < 600) {
+
+            if (!shapeMoved) {
                 obstacle.setY(obstacle.getY() + 1);
-            } else {
-                obstacle.setX(obstacle.getX() + 1);
             }
         }
 
@@ -106,8 +108,9 @@ public class Game implements World {
                         && obstacle.getX() + obstacle.getWidth() <= clown.getX() + obstacle.getWidth()
                 ) { // left hand
                     movable.remove(obstacle);
-                    if (clown.addToLeftHand(obstacle))
+                    if (clown.addToLeftHand(obstacle)) {
                         Score.getInstance().addScore();
+                    }
                     break;
                 }
                   System.out.println(clown.getX()+" dah awel case");
@@ -119,8 +122,9 @@ public class Game implements World {
                         && obstacle.getX() + obstacle.getWidth() <= clown.getX() +obstacle.getWidth()+120
                 ) { // right hand
                     movable.remove(obstacle);
-                    if (clown.addToRightHand(obstacle))
+                    if (clown.addToRightHand(obstacle)) {
                         Score.getInstance().addScore();
+                    }
                     break;
                 }  if (obstacle.getY() >= clown.getY() + clown.getHeight()) {
                     movable.remove(obstacle);
@@ -158,13 +162,10 @@ public class Game implements World {
         }
 
         for (int i = 0; i < level.numberOfQueues(); i++) {
-            Platform platform = new Platform(400 - (100 * i), 30 + 60 * i, this.getWidth(), this.getHeight(), Color.black, 0);
-            Platform platform2 = new Platform(400 - (100 * i), 30 + 60 * i, this.getWidth(), this.getHeight(), Color.black, 1);
+            Platform platform = new Platform(this.getWidth(), 30 + 60 * i, 400 - (100 * i), Color.black);
+
             arrayPlatform.add(platform);
-            arrayPlatform.add(platform2);
             constant.add(platform);
-            constant.add(platform2);
-            movable.add(ShapeFactory.generate(500,0));
         }
     }
 
