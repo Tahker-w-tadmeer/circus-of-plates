@@ -106,8 +106,6 @@ public class Game implements World {
                 if(hand == null) {
                     continue;
                 }
-                  System.out.println(clown.getX()+" dah awel case");
-                  System.out.println(clown.getX() + clown.getWidth()+" dah tany case");
 
                 movable.remove(obstacle);
 
