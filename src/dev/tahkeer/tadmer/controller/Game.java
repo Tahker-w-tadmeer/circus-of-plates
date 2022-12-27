@@ -2,6 +2,7 @@ package dev.tahkeer.tadmer.controller;
 
 import dev.tahkeer.tadmer.controller.factories.ShapeFactory;
 import dev.tahkeer.tadmer.model.Clown;
+import dev.tahkeer.tadmer.model.Hand;
 import dev.tahkeer.tadmer.model.Score;
 import dev.tahkeer.tadmer.model.interfaces.Level;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
@@ -19,7 +20,7 @@ public class Game implements World {
     private final CopyOnWriteArrayList<GameObject> controllable = new CopyOnWriteArrayList<>();
     private final ArrayList<GameObject> constant = new ArrayList<>();
     private Level level;
-    private final ArrayList<Platform> arrayPlatform = new ArrayList<>();
+    private final ArrayList<Platform> platforms = new ArrayList<>();
 
     private Game() {
         changeLevel(new EasyLevel());
@@ -55,7 +56,7 @@ public class Game implements World {
     }
 
     private void generate() {
-        for (Platform platform : arrayPlatform) {
+        for (Platform platform : platforms) {
 
             if (shouldGenerateShape(30))
                 movable.add(ShapeFactory.generate(platform.getX(), platform.getY() - 53));
@@ -77,7 +78,7 @@ public class Game implements World {
         for (GameObject obstacle : movable) {
             boolean shapeMoved = false;
 
-            for (Platform platform : arrayPlatform) {
+            for (Platform platform : platforms) {
                 if (platform.isShapeLeft(obstacle)) {
                     obstacle.setX(obstacle.getX() + 1);
                     shapeMoved = true;
@@ -98,37 +99,18 @@ public class Game implements World {
 
 
         for (GameObject clownObject : controllable) {
-            if (!(clownObject instanceof Clown clown))
-                continue;
+            Clown clown = (Clown) clownObject;
 
             for (GameObject obstacle : movable) {
-                if (obstacle.getY() >= clown.getY() - 10
-                        && obstacle.getY() <= clown.getY() + 20
-                        && obstacle.getX() >= clown.getX() - 10
-                        && obstacle.getX() <= clown.getX() + clown.getWidth()
-                        && obstacle.getX() + obstacle.getWidth() <= clown.getX() + 80
-                ) { // left hand
-                    movable.remove(obstacle);
-                    if (clown.addToLeftHand(obstacle)) {
-                        Score.getInstance().addScore();
-                    }
-                    break;
+                Hand hand = clown.getContainsHand(obstacle);
+                if(hand == null) {
+                    continue;
                 }
 
-                if (obstacle.getY() >= clown.getY() - 10
-                        && obstacle.getY() <= clown.getY() + 20
-                        && obstacle.getX() >= clown.getX() - 10 + 160
-                        && obstacle.getX() <= clown.getX() + clown.getWidth()
-                        && obstacle.getX() + obstacle.getWidth() <= clown.getX() + 80 + 160
-                ) { // right hand
-                    movable.remove(obstacle);
-                    if (clown.addToRightHand(obstacle)) {
-                        Score.getInstance().addScore();
-                    }
-                    break;
-                } else if (obstacle.getY() >= clown.getY() + clown.getHeight()) {
-                    movable.remove(obstacle);
-                    break;
+                movable.remove(obstacle);
+
+                if(hand.shapeLand(obstacle)) {
+                    Score.getInstance().addScore();
                 }
             }
         }
@@ -164,7 +146,7 @@ public class Game implements World {
         for (int i = 0; i < level.numberOfQueues(); i++) {
             Platform platform = new Platform(this.getWidth(), 30 + 60 * i, 400 - (100 * i), Color.black);
 
-            arrayPlatform.add(platform);
+            platforms.add(platform);
             constant.add(platform);
         }
     }
