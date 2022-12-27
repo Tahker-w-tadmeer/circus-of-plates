@@ -60,24 +60,26 @@ public class Clown extends DefaultGameObject implements GameObject {
 
         return null;
     }
+    public int getrealHeight() {
+        return getHeight() + Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes()) ;
+    }
 
     private BufferedImage generateImage() {
-        int realHeight = getHeight() + Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes());
 
         BufferedImage clownImage = new BufferedImage(
                 getWidth()*2/3,
-                realHeight,
+                getrealHeight(),
                 BufferedImage.TYPE_INT_ARGB
         );
         Graphics2D g2d = clownImage.createGraphics();
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        g2d.drawImage(scaledImage, 0, realHeight-this.getHeight(), null);
+        g2d.drawImage(scaledImage, 0, getrealHeight()-this.getHeight(), null);
 
         g2d.dispose();
 
-        this.position.y = yOfClown - (realHeight - this.getHeight()/3) - 20;
+        this.position.y = yOfClown - (getrealHeight() - this.getHeight()/3) - 20;
 
         return clownImage;
     }
