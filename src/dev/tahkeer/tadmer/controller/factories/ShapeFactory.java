@@ -42,7 +42,7 @@ public class ShapeFactory  {
             return new Plate(x, y+37, colors[new Random().nextInt(colors.length)]);
 
         if("bullet".equalsIgnoreCase(type))
-            return new bullet(x, y, colors[new Random().nextInt(colors.length)]);
+            return new bullet(x, y+25, colors[new Random().nextInt(colors.length)]);
 
         if("bomb".equalsIgnoreCase(type))
             return new Bomb(x, y, colors[new Random().nextInt(colors.length)]);

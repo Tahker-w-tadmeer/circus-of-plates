@@ -13,7 +13,7 @@ public class EasyLevel implements Level {
 
     @Override
     public int numberOfQueues() {
-        return 1;
+        return 3;
     }
 
     @Override

@@ -18,7 +18,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game implements World {
     Point rightcheck = new Point();
-    ArrayList<Platform> arrayPlatform;
+    ArrayList<Platform> arrayPlatform=new ArrayList<>();
     Point leftcheck = new Point();
     CopyOnWriteArrayList<GameObject> rightqueue=new CopyOnWriteArrayList<>();
     CopyOnWriteArrayList<GameObject> leftqueue=new CopyOnWriteArrayList<>();
@@ -62,22 +62,38 @@ public class Game implements World {
     }
 
     private void generate() {
-        Shape upperLeft = ShapeFactory.generate(10,0);
-        Shape bottomLeft = ShapeFactory.generate(10,300);
-        Shape upperRight = ShapeFactory.generate(1200,0);
-        Shape bottomRight = ShapeFactory.generate(1200,300);
+        Shape shape ;
+        int i=0;
+        for ( Platform platform: arrayPlatform) {
+            int y=30+60*i-28;
+            if(i%2!=0){
+                shape =  ShapeFactory.generate(1200,y-60);
+                movable.add( shape);
+            }
+            else {
+           shape =  ShapeFactory.generate(platform.getX(),y);
+            movable.add( shape);
+            }
+            i++;
 
-        if(shouldGenerateShape(50))
-            movable.add(bottomLeft);
+        }
 
-        if(shouldGenerateShape(25))
-            movable.add(upperRight);
+//        Shape upperLeft = ShapeFactory.generate(10,0);
+//        Shape bottomLeft = ShapeFactory.generate(10,300);
+//        Shape upperRight = ShapeFactory.generate(1200,0);
+//        Shape bottomRight = ShapeFactory.generate(1200,300);
 
-        if(shouldGenerateShape(75))
-            movable.add(upperLeft);
-
-        if(shouldGenerateShape(60))
-            movable.add(bottomRight);
+//        if(shouldGenerateShape(50))
+//            movable.add(bottomLeft);
+//
+//        if(shouldGenerateShape(25))
+//            movable.add(upperRight);
+//
+//        if(shouldGenerateShape(75))
+//            movable.add(upperLeft);
+//
+//        if(shouldGenerateShape(60))
+//            movable.add(bottomRight);
     }
 
     long lastTime = System.currentTimeMillis();
@@ -88,17 +104,27 @@ public class Game implements World {
             generate();
             lastTime = System.currentTimeMillis();
         }
-
-        for (GameObject obstacle : movable) {
-            if(obstacle.getX()<=1600 && obstacle.getX()>600) {
-                obstacle.setX(obstacle.getX() - 2);
+        int i=0;
+        for ( Platform platform: arrayPlatform) {
+              for (GameObject obstacle : movable) {
+                int y=30+60*i-28;
+                  if(obstacle.getX()<400-(100*i)&&obstacle.getX()<400){
+                      obstacle.setX(obstacle.getX() + 1);
+                  }
+               else if(i%2!=0&&obstacle.getX()<=1600 && obstacle.getX()>platform.getX()&&obstacle.getY()<=y){
+                    obstacle.setX(obstacle.getX() - 2);
+                }
             }
-            if(obstacle.getX()>=400&&obstacle.getX()<450||obstacle.getX()>=500&&obstacle.getX()<600){
-                obstacle.setY(obstacle.getY() + 1);
-            }
-            else {
-                obstacle.setX(obstacle.getX() + 1);
-            }
+            i++;
+//            if(obstacle.getX()<=1600 && obstacle.getX()>600) {
+//                obstacle.setX(obstacle.getX() - 2);
+//            }
+//            if(obstacle.getX()>=400&&obstacle.getX()<450||obstacle.getX()>=500&&obstacle.getX()<600){
+//                obstacle.setY(obstacle.getY() + 1);
+//            }
+//            else {
+//                obstacle.setX(obstacle.getX() + 1);
+//            }
         }
 
 
@@ -194,10 +220,6 @@ public class Game implements World {
             arrayPlatform.add(platform2);
             constant.add(platform);
             constant.add(platform2);
-
-
-
-
             movable.add(ShapeFactory.generate(500,0));
         }
     }
