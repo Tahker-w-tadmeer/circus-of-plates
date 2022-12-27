@@ -56,22 +56,9 @@ public class Game implements World {
     }
 
     private void generate() {
-        Shape upperLeft = ShapeFactory.generate(10, 0);
-        Shape bottomLeft = ShapeFactory.generate(10, 300);
-        Shape upperRight = ShapeFactory.generate(1200, 0);
-        Shape bottomRight = ShapeFactory.generate(1200, 300);
-
-        if (shouldGenerateShape(50))
-            movable.add(bottomLeft);
-
-        if (shouldGenerateShape(25))
-            movable.add(upperRight);
-
-        if (shouldGenerateShape(50))
-            movable.add(upperLeft);
-
-        if (shouldGenerateShape(40))
-            movable.add(bottomRight);
+        for (Platform platform: arrayPlatform) {
+            movable.add(ShapeFactory.generate(platform.getStartX(),platform.getY()-53));
+        }
     }
 
     long lastTime = System.currentTimeMillis();
@@ -83,15 +70,48 @@ public class Game implements World {
             lastTime = System.currentTimeMillis();
         }
 
-        for (GameObject obstacle : movable) {
-            if (obstacle.getX() <= 1600 && obstacle.getX() > 600) {
-                obstacle.setX(obstacle.getX() - 2);
-            }
-            if (obstacle.getX() >= 400 && obstacle.getX() < 450 || obstacle.getX() >= 500 && obstacle.getX() < 600) {
-                obstacle.setY(obstacle.getY() + 1);
-            } else {
-                obstacle.setX(obstacle.getX() + 1);
-            }
+              for (GameObject obstacle : movable) {
+
+                  Platform onPlatform = null;
+                  for (Platform platform : arrayPlatform) {
+                      if(Math.abs(obstacle.getY() - platform.getY()) < 15) {
+
+                          onPlatform = platform;
+                          break;
+                      }
+                  }
+
+//                  int i=0;
+//                  int f=0;
+//                  for ( Platform platform: arrayPlatform) {
+//                  if( (i%2 == 0)&& obstacle.getX()>=0 &&obstacle.getX() < platform.getWidth()+10 &&obstacle.getY()<=platform.getY()){
+//                      obstacle.setX(obstacle.getX() + 2);
+//                  }
+//                   if(i%2!=0&&obstacle.getX()<=1280 && obstacle.getX() > platform.getX()-80 &&obstacle.getY()<=platform.getY()){
+//                    obstacle.setX(obstacle.getX() - 2);
+//                  }
+//                  else if((obstacle.getX() < platform.getX()-80 )||(obstacle.getX() > platform.getWidth()+10 ))
+//                      {
+//                          obstacle.setY(obstacle.getY() + 1);
+//                      }
+//                  else f=1;
+//
+//
+//                  i++;
+//                  }
+//                  System.out.println(obstacle.getX());
+
+
+
+//            if(obstacle.getX()<=1600 && obstacle.getX()>600) {
+//                obstacle.setX(obstacle.getX() - 2);
+//            }
+//            if(obstacle.getX()>=400&&obstacle.getX()<450||obstacle.getX()>=500&&obstacle.getX()<600){
+//                obstacle.setY(obstacle.getY() + 1);
+//            }
+//            else {
+//                obstacle.setX(obstacle.getX() + 1);
+//            }
         }
 
 
@@ -157,9 +177,9 @@ public class Game implements World {
             controllable.add(new Clown(i * 400, this.getHeight()));
         }
 
-        for (int i = 0; i < level.numberOfQueues(); i++) {
-            Platform platform = new Platform(400 - (100 * i), 30 + 60 * i, this.getWidth(), this.getHeight(), Color.black, 0);
-            Platform platform2 = new Platform(400 - (100 * i), 30 + 60 * i, this.getWidth(), this.getHeight(), Color.black, 1);
+        for (int i=0; i<level.numberOfQueues(); i++) {
+            Platform platform = new Platform(0,30+60*i, 400-(100*i), Color.black);
+            Platform platform2 = new Platform(this.getWidth() - (400-(100*i)),30+60*i, 400-(100*i), Color.black);
             arrayPlatform.add(platform);
             arrayPlatform.add(platform2);
             constant.add(platform);
