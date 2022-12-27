@@ -4,7 +4,6 @@ import dev.tahkeer.tadmer.controller.factories.ShapeFactory;
 import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.Score;
 import dev.tahkeer.tadmer.model.interfaces.Level;
-import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import dev.tahkeer.tadmer.model.shapes.Platform;
 import eg.edu.alexu.csd.oop.game.GameObject;
@@ -56,10 +55,13 @@ public class Game implements World {
     }
 
     private void generate() {
-        for (Platform platform: arrayPlatform) {
-            movable.add(ShapeFactory.generate(platform.getX(),platform.getY()-53));
+        for (Platform platform : arrayPlatform) {
 
-            movable.add(ShapeFactory.generate(platform.getX() + this.getWidth()-100,platform.getY()-53));
+            if (shouldGenerateShape(30))
+                movable.add(ShapeFactory.generate(platform.getX(), platform.getY() - 53));
+
+            if (shouldGenerateShape(40))
+                movable.add(ShapeFactory.generate(platform.getX() + this.getWidth() - 100, platform.getY() - 53));
         }
     }
 
@@ -72,62 +74,26 @@ public class Game implements World {
             lastTime = System.currentTimeMillis();
         }
 
-              for (GameObject obstacle : movable) {
-                  boolean shapeMoved = false;
+        for (GameObject obstacle : movable) {
+            boolean shapeMoved = false;
 
-                  for (Platform platform : arrayPlatform) {
-                      if(platform.isShapeLeft(obstacle)) {
+            for (Platform platform : arrayPlatform) {
+                if (platform.isShapeLeft(obstacle)) {
+                    obstacle.setX(obstacle.getX() + 1);
+                    shapeMoved = true;
+                    break;
+                }
 
-                          obstacle.setX(obstacle.getX() + 1);
-                          shapeMoved = true;
+                if (platform.isShapeRight(obstacle)) {
+                    obstacle.setX(obstacle.getX() - 1);
+                    shapeMoved = true;
+                    break;
+                }
+            }
 
-                          break;
-                      }
-
-                      if(platform.isShapeRight(obstacle)) {
-
-                          obstacle.setX(obstacle.getX() - 1);
-                          shapeMoved = true;
-
-                          break;
-                      }
-                  }
-
-                  if(! shapeMoved) {
-                      obstacle.setY(obstacle.getY() + 1);
-                  }
-
-//                  int i=0;
-//                  int f=0;
-//                  for ( Platform platform: arrayPlatform) {
-//                  if( (i%2 == 0)&& obstacle.getX()>=0 &&obstacle.getX() < platform.getWidth()+10 &&obstacle.getY()<=platform.getY()){
-//                      obstacle.setX(obstacle.getX() + 2);
-//                  }
-//                   if(i%2!=0&&obstacle.getX()<=1280 && obstacle.getX() > platform.getX()-80 &&obstacle.getY()<=platform.getY()){
-//                    obstacle.setX(obstacle.getX() - 2);
-//                  }
-//                  else if((obstacle.getX() < platform.getX()-80 )||(obstacle.getX() > platform.getWidth()+10 ))
-//                      {
-//                          obstacle.setY(obstacle.getY() + 1);
-//                      }
-//                  else f=1;
-//
-//
-//                  i++;
-//                  }
-//                  System.out.println(obstacle.getX());
-
-
-
-//            if(obstacle.getX()<=1600 && obstacle.getX()>600) {
-//                obstacle.setX(obstacle.getX() - 2);
-//            }
-//            if(obstacle.getX()>=400&&obstacle.getX()<450||obstacle.getX()>=500&&obstacle.getX()<600){
-//                obstacle.setY(obstacle.getY() + 1);
-//            }
-//            else {
-//                obstacle.setX(obstacle.getX() + 1);
-//            }
+            if (!shapeMoved) {
+                obstacle.setY(obstacle.getY() + 1);
+            }
         }
 
 
@@ -143,8 +109,9 @@ public class Game implements World {
                         && obstacle.getX() + obstacle.getWidth() <= clown.getX() + 80
                 ) { // left hand
                     movable.remove(obstacle);
-                    if (clown.addToLeftHand(obstacle))
+                    if (clown.addToLeftHand(obstacle)) {
                         Score.getInstance().addScore();
+                    }
                     break;
                 }
 
@@ -155,8 +122,9 @@ public class Game implements World {
                         && obstacle.getX() + obstacle.getWidth() <= clown.getX() + 80 + 160
                 ) { // right hand
                     movable.remove(obstacle);
-                    if (clown.addToRightHand(obstacle))
+                    if (clown.addToRightHand(obstacle)) {
                         Score.getInstance().addScore();
+                    }
                     break;
                 } else if (obstacle.getY() >= clown.getY() + clown.getHeight()) {
                     movable.remove(obstacle);
@@ -193,13 +161,11 @@ public class Game implements World {
             controllable.add(new Clown(i * 400, this.getHeight()));
         }
 
-        for (int i=0; i<level.numberOfQueues(); i++) {
-            Platform platform = new Platform(this.getWidth(),30+60*i, 400-(100*i), Color.black);
+        for (int i = 0; i < level.numberOfQueues(); i++) {
+            Platform platform = new Platform(this.getWidth(), 30 + 60 * i, 400 - (100 * i), Color.black);
 
             arrayPlatform.add(platform);
             constant.add(platform);
-
-            movable.add(ShapeFactory.generate(500,0));
         }
     }
 

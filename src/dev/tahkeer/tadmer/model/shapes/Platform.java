@@ -39,7 +39,7 @@ public class Platform extends DefaultShape {
         if(!isShapeOnTop(shape)) return false;
 
         int startX = fullWidth;
-        int endX = fullWidth - this.getWidth();
+        int endX = fullWidth - this.getWidth() - 80;
 
         return shape.getX() <= startX && shape.getX() >= endX;
     }
