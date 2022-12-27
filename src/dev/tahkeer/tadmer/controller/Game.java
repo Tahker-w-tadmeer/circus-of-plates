@@ -62,20 +62,8 @@ public class Game implements World {
     }
 
     private void generate() {
-        Shape shape ;
-        int i=0;
-        for ( Platform platform: arrayPlatform) {
-            int y=30+60*i-28;
-            if(i%2!=0){
-                shape =  ShapeFactory.generate(1200,y-60);
-                movable.add( shape);
-            }
-            else {
-           shape =  ShapeFactory.generate(platform.getX(),y);
-            movable.add( shape);
-            }
-            i++;
-
+        for (Platform platform: arrayPlatform) {
+            movable.add(ShapeFactory.generate(platform.getStartX(),platform.getY()-53));
         }
 
 //        Shape upperLeft = ShapeFactory.generate(10,0);
@@ -104,18 +92,40 @@ public class Game implements World {
             generate();
             lastTime = System.currentTimeMillis();
         }
-        int i=0;
-        for ( Platform platform: arrayPlatform) {
+
               for (GameObject obstacle : movable) {
-                int y=30+60*i-28;
-                  if(obstacle.getX()<400-(100*i)&&obstacle.getX()<400){
-                      obstacle.setX(obstacle.getX() + 1);
+
+                  Platform onPlatform = null;
+                  for (Platform platform : arrayPlatform) {
+                      if(Math.abs(obstacle.getY() - platform.getY()) < 15) {
+
+                          onPlatform = platform;
+                          break;
+                      }
                   }
-               else if(i%2!=0&&obstacle.getX()<=1600 && obstacle.getX()>platform.getX()&&obstacle.getY()<=y){
-                    obstacle.setX(obstacle.getX() - 2);
-                }
-            }
-            i++;
+
+//                  int i=0;
+//                  int f=0;
+//                  for ( Platform platform: arrayPlatform) {
+//                  if( (i%2 == 0)&& obstacle.getX()>=0 &&obstacle.getX() < platform.getWidth()+10 &&obstacle.getY()<=platform.getY()){
+//                      obstacle.setX(obstacle.getX() + 2);
+//                  }
+//                   if(i%2!=0&&obstacle.getX()<=1280 && obstacle.getX() > platform.getX()-80 &&obstacle.getY()<=platform.getY()){
+//                    obstacle.setX(obstacle.getX() - 2);
+//                  }
+//                  else if((obstacle.getX() < platform.getX()-80 )||(obstacle.getX() > platform.getWidth()+10 ))
+//                      {
+//                          obstacle.setY(obstacle.getY() + 1);
+//                      }
+//                  else f=1;
+//
+//
+//                  i++;
+//                  }
+//                  System.out.println(obstacle.getX());
+
+
+
 //            if(obstacle.getX()<=1600 && obstacle.getX()>600) {
 //                obstacle.setX(obstacle.getX() - 2);
 //            }
@@ -214,8 +224,8 @@ public class Game implements World {
         }
 
         for (int i=0; i<level.numberOfQueues(); i++) {
-            Platform platform = new Platform(400-(100*i),30+60*i,this.getWidth(),this.getHeight(),Color.black,0);
-            Platform platform2 = new Platform(400-(100*i),30+60*i,this.getWidth(),this.getHeight(),Color.black,1);
+            Platform platform = new Platform(0,30+60*i, 400-(100*i), Color.black);
+            Platform platform2 = new Platform(this.getWidth() - (400-(100*i)),30+60*i, 400-(100*i), Color.black);
             arrayPlatform.add(platform);
             arrayPlatform.add(platform2);
             constant.add(platform);
