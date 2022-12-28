@@ -1,10 +1,9 @@
 package dev.tahkeer.tadmer.controller.factories;
 
 import dev.tahkeer.tadmer.model.interfaces.Shape;
-import dev.tahkeer.tadmer.model.shapes.Ball;
 import dev.tahkeer.tadmer.model.shapes.Bomb;
 import dev.tahkeer.tadmer.model.shapes.Plate;
-import dev.tahkeer.tadmer.model.shapes.bullet;
+import dev.tahkeer.tadmer.model.shapes.Bullet;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -42,7 +41,7 @@ public class ShapeFactory  {
             return new Plate(x, y+37, colors[new Random().nextInt(colors.length)]);
 
         if("bullet".equalsIgnoreCase(type))
-            return new bullet(x, y+25, colors[new Random().nextInt(colors.length)]);
+            return new Bullet(x, y+25, colors[new Random().nextInt(colors.length)]);
 
         if("bomb".equalsIgnoreCase(type))
             return new Bomb(x, y, colors[new Random().nextInt(colors.length)]);
