@@ -30,7 +30,7 @@ public class ShapeFactory  {
             }
         }
 
-        return generate("", x, y);
+        return generate(x, y);
     }
 
     public static Shape generate(String type, int x, int y) {

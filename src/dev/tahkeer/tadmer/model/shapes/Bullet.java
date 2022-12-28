@@ -15,6 +15,10 @@ public class Bullet extends DefaultShape {
         this.generateImage();
     }
 
+    public void fall() {
+        this.setY(this.getY() + 3);
+    }
+
     private void generateImage() {
         BufferedImage image = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = image.createGraphics();

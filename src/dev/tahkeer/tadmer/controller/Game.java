@@ -17,11 +17,11 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game implements World {
-    private final CopyOnWriteArrayList<GameObject> movable = new CopyOnWriteArrayList<>();
-    private final CopyOnWriteArrayList<GameObject> controllable = new CopyOnWriteArrayList<>();
+    private final CopyOnWriteArrayList<Shape> shapes = new CopyOnWriteArrayList<>();
+    private final CopyOnWriteArrayList<Clown> clowns = new CopyOnWriteArrayList<>();
     private final ArrayList<GameObject> constant = new ArrayList<>();
-    private Level level;
     private final ArrayList<Platform> platforms = new ArrayList<>();
+    private Level level;
 
     private Game() {
         changeLevel(new EasyLevel());
@@ -34,12 +34,12 @@ public class Game implements World {
 
     @Override
     public List<GameObject> getMovableObjects() {
-        return movable;
+        return shapes.stream().map(s -> (GameObject) s).toList();
     }
 
     @Override
     public List<GameObject> getControlableObjects() {
-        return controllable;
+        return clowns.stream().map(s -> (GameObject) s).toList();
     }
 
     @Override
@@ -63,13 +63,13 @@ public class Game implements World {
             if (shouldGenerateShape(30)) {
                 shape = ShapeFactory.generate(platform.getX(), platform.getY());
                 shape.setY(shape.getY() - shape.getHeight());
-                movable.add(shape);
+                shapes.add(shape);
             }
 
             if (shouldGenerateShape(40)) {
                 shape = ShapeFactory.generate(platform.getX() + this.getWidth() - 100, platform.getY());
                 shape.setY(shape.getY() - shape.getHeight());
-                movable.add(shape);
+                shapes.add(shape);
             }
         }
     }
@@ -83,7 +83,7 @@ public class Game implements World {
             lastTime = System.currentTimeMillis();
         }
 
-        for (GameObject obstacle : movable) {
+        for (Shape obstacle : shapes) {
             boolean shapeMoved = false;
 
             for (Platform platform : platforms) {
@@ -101,21 +101,19 @@ public class Game implements World {
             }
 
             if (!shapeMoved) {
-                obstacle.setY(obstacle.getY() + 1);
+                obstacle.fall();
             }
         }
 
 
-        for (GameObject clownObject : controllable) {
-            Clown clown = (Clown) clownObject;
-
-            for (GameObject obstacle : movable) {
+        for (Clown clown : clowns) {
+            for (Shape obstacle : shapes) {
                 Hand hand = clown.getContainsHand(obstacle);
                 if(hand == null) {
                     continue;
                 }
 
-                movable.remove(obstacle);
+                shapes.remove(obstacle);
 
                 if(hand.shapeLand(obstacle)) {
                     Score.getInstance().addScore();
@@ -143,12 +141,12 @@ public class Game implements World {
     private void changeLevel(Level level) {
         this.level = level;
 
-        movable.clear();
-        controllable.clear();
+        shapes.clear();
+        clowns.clear();
         constant.clear();
 
         for (int i = 0; i < level.numberOfClowns(); i++) {
-            controllable.add(new Clown(i * 400, this.getHeight()));
+            clowns.add(new Clown(i * 400, this.getHeight()));
         }
 
         for (int i = 0; i < level.numberOfQueues(); i++) {
