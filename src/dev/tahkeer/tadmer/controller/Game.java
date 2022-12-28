@@ -5,6 +5,7 @@ import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.Hand;
 import dev.tahkeer.tadmer.model.Score;
 import dev.tahkeer.tadmer.model.interfaces.Level;
+import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import dev.tahkeer.tadmer.model.shapes.Platform;
 import eg.edu.alexu.csd.oop.game.GameObject;
@@ -57,12 +58,19 @@ public class Game implements World {
 
     private void generate() {
         for (Platform platform : platforms) {
+            Shape shape;
 
-            if (shouldGenerateShape(30))
-                movable.add(ShapeFactory.generate(platform.getX(), platform.getY() - 53));
+            if (shouldGenerateShape(30)) {
+                shape = ShapeFactory.generate(platform.getX(), platform.getY());
+                shape.setY(shape.getY() - shape.getHeight());
+                movable.add(shape);
+            }
 
-            if (shouldGenerateShape(40))
-                movable.add(ShapeFactory.generate(platform.getX() + this.getWidth() - 100, platform.getY() - 53));
+            if (shouldGenerateShape(40)) {
+                shape = ShapeFactory.generate(platform.getX() + this.getWidth() - 100, platform.getY());
+                shape.setY(shape.getY() - shape.getHeight());
+                movable.add(shape);
+            }
         }
     }
 
@@ -144,7 +152,7 @@ public class Game implements World {
         }
 
         for (int i = 0; i < level.numberOfQueues(); i++) {
-            Platform platform = new Platform(this.getWidth(), 30 + 60 * i, 400 - (100 * i), Color.black);
+            Platform platform = new Platform(this.getWidth(), 60 * (i + 1), 400 - (100 * i), Color.black);
 
             platforms.add(platform);
             constant.add(platform);

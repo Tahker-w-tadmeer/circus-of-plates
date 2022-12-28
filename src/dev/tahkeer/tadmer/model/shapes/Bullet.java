@@ -20,10 +20,9 @@ public class Bullet extends DefaultShape {
         Graphics2D g2d = image.createGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-//        g2d.setStroke(new BasicStroke(3));
         g2d.setColor(this.getColor());
         g2d.fillOval(0, 0, this.getWidth(), this.getHeight());
-        g2d.fillRoundRect(this.getWidth()/2, 0, this.getWidth()/2, this.getHeight(), 5, 5);
+        g2d.fillRoundRect(this.getWidth()/2, 0, this.getWidth()/2, this.getHeight(), 5, 10);
 
         g2d.dispose();
 
