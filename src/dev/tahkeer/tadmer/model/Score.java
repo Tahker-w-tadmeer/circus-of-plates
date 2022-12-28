@@ -1,16 +1,15 @@
 package dev.tahkeer.tadmer.model;
 
-import dev.tahkeer.tadmer.controller.Game;
-
 public class Score {
-    private Score() {
-    }
+
+    private Score() {}
 
     private int score = 0;
 
     public void addScore() {
         score += 10;
     }
+
 
     public void removeScore() {
         score -= 10;

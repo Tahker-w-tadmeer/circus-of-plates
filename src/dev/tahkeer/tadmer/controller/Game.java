@@ -83,43 +83,33 @@ public class Game implements World {
             lastTime = System.currentTimeMillis();
         }
 
-        for (Shape obstacle : shapes) {
+        for (Shape shape : shapes) {
             boolean shapeMoved = false;
 
             for (Platform platform : platforms) {
-                if (platform.isShapeLeft(obstacle)) {
-                    obstacle.setX(obstacle.getX() + 1);
+                if (platform.isShapeLeft(shape)) {
+                    shape.setX(shape.getX() + 3);
                     shapeMoved = true;
                     break;
                 }
 
-                if (platform.isShapeRight(obstacle)) {
-                    obstacle.setX(obstacle.getX() - 1);
+                if (platform.isShapeRight(shape)) {
+                    shape.setX(shape.getX() - 3);
                     shapeMoved = true;
                     break;
                 }
             }
 
             if (!shapeMoved) {
-                obstacle.fall();
+                shape.fall();
             }
         }
 
 
         for (Clown clown : clowns) {
-            for (Shape obstacle : shapes) {
-                Hand hand = clown.getContainsHand(obstacle);
-                if(hand == null) {
-                    continue;
-                }
-
-                shapes.remove(obstacle);
-
-                if(hand.shapeLand(obstacle)) {
-                    Score.getInstance().addScore();
-                }
-            }
+            shapes.removeIf(clown::holds);
         }
+
         return true;
     }
 
@@ -146,7 +136,11 @@ public class Game implements World {
         constant.clear();
 
         for (int i = 0; i < level.numberOfClowns(); i++) {
-            clowns.add(new Clown(i * 400, this.getHeight()));
+            Clown clown = new Clown(i * 400, this.getHeight());
+
+            clown.addShapesListener(() -> Score.getInstance().addScore());
+
+            clowns.add(clown);
         }
 
         for (int i = 0; i < level.numberOfQueues(); i++) {

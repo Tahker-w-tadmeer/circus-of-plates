@@ -17,7 +17,7 @@ public class Plate extends DefaultShape {
     }
 
     public void fall() {
-        this.setY(this.getY() + 2);
+        this.setY(this.getY() + 1);
     }
 
     private void generateImage() {

@@ -16,7 +16,7 @@ public class Bullet extends DefaultShape {
     }
 
     public void fall() {
-        this.setY(this.getY() + 3);
+        this.setY(this.getY() + 2);
     }
 
     private void generateImage() {

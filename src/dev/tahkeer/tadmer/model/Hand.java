@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Hand {
-    private final ArrayList<GameObject> shapes = new ArrayList<>();
+    private final ArrayList<Shape> shapes = new ArrayList<>();
     private int x = 0;
     private int y = 0;
 
@@ -37,18 +37,18 @@ public class Hand {
         return y;
     }
 
-    public boolean shapeLand(GameObject shapeObject) {
+    public boolean shapeLand(Shape shape) {
         if(shapes.size() < 2) {
-            shapes.add(shapeObject);
+            shapes.add(shape);
 
             this.setY(this.heightOfShapes());
 
             return false;
         }
-        Shape shape = (Shape) shapeObject;
+
         int size = shapes.size();
-        Shape lastShape = (Shape) shapes.get(size - 1);
-        Shape beforeLastShape = (Shape) shapes.get(size - 2);
+        Shape lastShape = shapes.get(size - 1);
+        Shape beforeLastShape = shapes.get(size - 2);
 
         if(shape.getColor().equals(lastShape.getColor()) && shape.getColor().equals(beforeLastShape.getColor())) {
             shapes.remove(size - 1);
@@ -57,7 +57,8 @@ public class Hand {
             this.setY(this.heightOfShapes());
             return true;
         }
-        shapes.add(shapeObject);
+
+        shapes.add(shape);
         this.setY(this.heightOfShapes());
 
         return false;
