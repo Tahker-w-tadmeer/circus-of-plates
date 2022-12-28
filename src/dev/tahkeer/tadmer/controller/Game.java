@@ -6,6 +6,7 @@ import dev.tahkeer.tadmer.model.Hand;
 import dev.tahkeer.tadmer.model.Score;
 import dev.tahkeer.tadmer.model.interfaces.Level;
 import dev.tahkeer.tadmer.model.interfaces.Shape;
+import dev.tahkeer.tadmer.model.interfaces.Model;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import dev.tahkeer.tadmer.model.shapes.Platform;
 import eg.edu.alexu.csd.oop.game.GameObject;
@@ -25,6 +26,11 @@ public class Game implements World {
 
     private Game() {
         changeLevel(new EasyLevel());
+    }
+
+    private void updateScore(Model model) {
+        if (model!=null)
+            Score.getInstance().addScore();
     }
 
     @Override
@@ -88,13 +94,13 @@ public class Game implements World {
 
             for (Platform platform : platforms) {
                 if (platform.isShapeLeft(obstacle)) {
-                    obstacle.setX(obstacle.getX() + 1);
+                    obstacle.setX(obstacle.getX() + 3);
                     shapeMoved = true;
                     break;
                 }
 
                 if (platform.isShapeRight(obstacle)) {
-                    obstacle.setX(obstacle.getX() - 1);
+                    obstacle.setX(obstacle.getX() - 3);
                     shapeMoved = true;
                     break;
                 }
@@ -112,11 +118,9 @@ public class Game implements World {
                 if(hand == null) {
                     continue;
                 }
-
                 shapes.remove(obstacle);
-
                 if(hand.shapeLand(obstacle)) {
-                    Score.getInstance().addScore();
+                    Score.addListener(this::updateScore);
                 }
             }
         }

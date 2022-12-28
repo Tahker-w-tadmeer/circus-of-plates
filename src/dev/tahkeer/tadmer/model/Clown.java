@@ -27,10 +27,10 @@ public class Clown extends DefaultGameObject implements GameObject {
 
         this.generateImage();
 
-        int widthDivided = getWidth() - getWidth()/3;
+        int widthDivided = getWidth() - getWidth()/19;
         try {
             scaledImage = ImageIO.read(new File("./res/colored_clown.png"))
-                    .getScaledInstance(widthDivided, (int) (widthDivided * this.aspectRatio()), Image.SCALE_SMOOTH);
+                    .getScaledInstance(widthDivided, (int) (widthDivided / this.aspectRatio())+50, Image.SCALE_SMOOTH);
         } catch (IOException ignored) {}
     }
 
@@ -39,7 +39,8 @@ public class Clown extends DefaultGameObject implements GameObject {
         super.setX(x);
 
         leftHand.setX(x);
-        rightHand.setX(x + (getWidth() / 3) + 20);
+        rightHand.setX(x + 2*(getWidth()*2/ 19)+150 );
+
     }
 
     @Override
@@ -69,8 +70,13 @@ public class Clown extends DefaultGameObject implements GameObject {
     private BufferedImage generateImage() {
 
         BufferedImage clownImage = new BufferedImage(
+<<<<<<< HEAD
                 getWidth()*2/3,
                 getRealHeight(),
+=======
+                getWidth(),
+                getrealHeight(),
+>>>>>>> bc3c3a6bc05916dc01cb87564e91c333cf95dfc2
                 BufferedImage.TYPE_INT_ARGB
         );
         Graphics2D g2d = clownImage.createGraphics();
@@ -121,7 +127,7 @@ public class Clown extends DefaultGameObject implements GameObject {
 
         lastY = biggestY;
         for (BufferedImage shapeImage : rightHand.getSpriteImages()) {
-            g2d.drawImage(shapeImage, this.getWidth()-180, lastY, null);
+            g2d.drawImage(shapeImage, this.getWidth()-100, lastY, null);
             lastY -= shapeImage.getHeight();
         }
 
