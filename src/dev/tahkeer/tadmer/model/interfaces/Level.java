@@ -11,6 +11,8 @@ public interface Level {
 
     int controlSpeed();
 
+    int score();
+
     Level next();
 
     Level previous();

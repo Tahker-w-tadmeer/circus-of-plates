@@ -10,12 +10,12 @@ public class HardLevel implements Level {
 
     @Override
     public int numberOfClowns() {
-        return 2;
+        return 1;
     }
 
     @Override
     public int numberOfQueues() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -26,6 +26,11 @@ public class HardLevel implements Level {
     @Override
     public int controlSpeed() {
         return 10;
+    }
+
+    @Override
+    public int score() {
+        return 150;
     }
 
     @Override

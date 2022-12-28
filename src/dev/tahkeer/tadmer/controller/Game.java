@@ -1,10 +1,12 @@
 package dev.tahkeer.tadmer.controller;
 
+import dev.tahkeer.tadmer.controller.factories.ClownFactory;
+import dev.tahkeer.tadmer.controller.factories.PlatformFactory;
 import dev.tahkeer.tadmer.controller.factories.ShapeFactory;
 import dev.tahkeer.tadmer.model.Clown;
-import dev.tahkeer.tadmer.model.Hand;
 import dev.tahkeer.tadmer.model.Score;
 import dev.tahkeer.tadmer.model.interfaces.Level;
+import dev.tahkeer.tadmer.model.interfaces.ScoreEventListener;
 import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import dev.tahkeer.tadmer.model.shapes.Platform;
@@ -19,12 +21,35 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Game implements World {
     private final CopyOnWriteArrayList<Shape> shapes = new CopyOnWriteArrayList<>();
     private final CopyOnWriteArrayList<Clown> clowns = new CopyOnWriteArrayList<>();
-    private final ArrayList<GameObject> constant = new ArrayList<>();
+    private final CopyOnWriteArrayList<GameObject> constant = new CopyOnWriteArrayList<>();
     private final ArrayList<Platform> platforms = new ArrayList<>();
     private Level level;
 
+    private boolean isGameOver = false;
+
     private Game() {
         changeLevel(new EasyLevel());
+
+        Score.getInstance().addListener(new ScoreEventListener() {
+            @Override
+            public void added(int oldScore, int score) {
+                if(score >= level.score()) {
+                    Level nextLevel = level.next();
+
+                    if(nextLevel == null) {
+                        isGameOver = true;
+                        return;
+                    }
+
+                    changeLevel(nextLevel);
+                }
+            }
+
+            @Override
+            public void removed(int oldScore, int score) {
+
+            }
+        });
     }
 
     @Override
@@ -78,6 +103,10 @@ public class Game implements World {
 
     @Override
     public boolean refresh() {
+        if(isGameOver) {
+            return false;
+        }
+
         if (System.currentTimeMillis() - lastTime > level.speed() * 100L) {
             generate();
             lastTime = System.currentTimeMillis();
@@ -129,26 +158,27 @@ public class Game implements World {
     }
 
     private void changeLevel(Level level) {
-        this.level = level;
-
-        shapes.clear();
-        clowns.clear();
         constant.clear();
 
+        clowns.clear();
+
         for (int i = 0; i < level.numberOfClowns(); i++) {
-            Clown clown = new Clown(i * 400, this.getHeight());
+            Clown clown = ClownFactory.generate(i * 400, this.getHeight());
 
             clown.addShapesListener(() -> Score.getInstance().addScore());
 
             clowns.add(clown);
         }
 
-        for (int i = 0; i < level.numberOfQueues(); i++) {
-            Platform platform = new Platform(this.getWidth(), 60 * (i + 1), 400 - (100 * i), Color.black);
+        platforms.clear();
 
+        Platform[] platformsArray = PlatformFactory.generate(level.numberOfQueues(), this.getWidth(), 60, 400);
+        for (Platform platform : platformsArray) {
             platforms.add(platform);
             constant.add(platform);
         }
+
+        this.level = level;
     }
 
     private static final class GameHolder {

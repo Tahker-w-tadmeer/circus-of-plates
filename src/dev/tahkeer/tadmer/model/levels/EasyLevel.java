@@ -27,6 +27,11 @@ public class EasyLevel implements Level {
     }
 
     @Override
+    public int score() {
+        return 50;
+    }
+
+    @Override
     public Level next() {
         return new MediumLevel();
     }
