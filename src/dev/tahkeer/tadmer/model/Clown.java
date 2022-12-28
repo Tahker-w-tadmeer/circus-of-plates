@@ -70,13 +70,8 @@ public class Clown extends DefaultGameObject implements GameObject {
     private BufferedImage generateImage() {
 
         BufferedImage clownImage = new BufferedImage(
-<<<<<<< HEAD
-                getWidth()*2/3,
-                getRealHeight(),
-=======
                 getWidth(),
-                getrealHeight(),
->>>>>>> bc3c3a6bc05916dc01cb87564e91c333cf95dfc2
+                getRealHeight(),
                 BufferedImage.TYPE_INT_ARGB
         );
         Graphics2D g2d = clownImage.createGraphics();
