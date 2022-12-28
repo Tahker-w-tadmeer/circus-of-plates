@@ -27,6 +27,10 @@ abstract public class DefaultShape extends DefaultGameObject implements Shape {
         super.setY(y);
     }
 
+    public void fall() {
+        this.setY(this.getY() + 1);
+    }
+
     @Override
     public boolean isVisible() {
         return true;

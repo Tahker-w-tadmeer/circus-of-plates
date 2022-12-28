@@ -3,34 +3,30 @@ package dev.tahkeer.tadmer.model.shapes;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class bullet extends DefaultShape {
+public class Bullet extends DefaultShape {
     private final BufferedImage[] vectors = new BufferedImage[1];
 
-    public bullet(int x, int y, Color color) {
+    public Bullet(int x, int y, Color color) {
         super(x, y, color);
 
         this.setWidth(60);
-        this.setHeight(60);
+        this.setHeight(10);
 
         this.generateImage();
+    }
+
+    public void fall() {
+        this.setY(this.getY() + 3);
     }
 
     private void generateImage() {
         BufferedImage image = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = image.createGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        int x = this.getWidth() / 2;
-        int y = this.getWidth()*2 ;
-        int x1 = (int) ((this.getWidth() / 4f) );
-        int y1 = (int) ((this.getWidth() / 4f) );
-        int x2 = (int) ((this.getWidth() ) );
-        int y2 = (int) ((this.getWidth() /4) );
 
-        g2d.setStroke(new BasicStroke(3));
         g2d.setColor(this.getColor());
-        g2d.fillOval(x1+3, y1+3, x2-6, y2-6);
-        g2d.setColor(Color.white);
-        g2d.drawArc(x1+12, y1+8, x2-22, y2-22, 15, 40);
+        g2d.fillOval(0, 0, this.getWidth(), this.getHeight());
+        g2d.fillRoundRect(this.getWidth()/2, 0, this.getWidth()/2, this.getHeight(), 5, 10);
 
         g2d.dispose();
 

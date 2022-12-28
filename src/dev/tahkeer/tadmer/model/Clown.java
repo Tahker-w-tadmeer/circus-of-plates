@@ -49,20 +49,20 @@ public class Clown extends DefaultGameObject implements GameObject {
         Point shapePoint = new Point(shape.getX(), shape.getY());
 
         Point leftHandPoint = new Point(leftHand.getX(), leftHand.getY());
-        if(Math.abs(leftHandPoint.y - shapePoint.y) < 5
-                && Math.abs(leftHandPoint.x - shapePoint.x) < 50) {
+        if(Math.abs(leftHandPoint.y - shapePoint.y) < 2
+                && Math.abs(leftHandPoint.x - shapePoint.x) < 40) {
             return leftHand;
         }
 
         Point rightHandPoint = new Point(rightHand.getX(), rightHand.getY());
-        if(Math.abs(rightHandPoint.y - shapePoint.y) < 5
-                && Math.abs(rightHandPoint.x - shapePoint.x) < 50) {
+        if(Math.abs(rightHandPoint.y - shapePoint.y) < 2
+                && Math.abs(rightHandPoint.x - shapePoint.x) < 40) {
             return rightHand;
         }
 
         return null;
     }
-    public int getrealHeight() {
+    public int getRealHeight() {
         return getHeight() + Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes()) ;
     }
 
@@ -70,18 +70,18 @@ public class Clown extends DefaultGameObject implements GameObject {
 
         BufferedImage clownImage = new BufferedImage(
                 getWidth()*2/3,
-                getrealHeight(),
+                getRealHeight(),
                 BufferedImage.TYPE_INT_ARGB
         );
         Graphics2D g2d = clownImage.createGraphics();
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        g2d.drawImage(scaledImage, 0, getrealHeight()-this.getHeight(), null);
+        g2d.drawImage(scaledImage, 0, getRealHeight()-this.getHeight(), null);
 
         g2d.dispose();
 
-        this.position.y = yOfClown - (getrealHeight() - this.getHeight()/3) - 20;
+        this.position.y = yOfClown - (getRealHeight() - this.getHeight()/3) - 20;
 
         return clownImage;
     }
