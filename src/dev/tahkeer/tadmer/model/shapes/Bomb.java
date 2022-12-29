@@ -7,23 +7,26 @@ import java.io.File;
 import java.io.IOException;
 
 public class Bomb extends DefaultShape {
-    private final BufferedImage[] vectors = new BufferedImage[1];
+    private final static BufferedImage[] vectors = new BufferedImage[1];
+    private static BufferedImage image;
 
-    public Bomb(int x, int y, Color color) {
-        super(x, y, color);
+    public Bomb(int x, int y) {
+        super(x, y, Color.black);
 
         this.setWidth(60);
         this.setHeight(60);
-        
-        this.generateImage();
+
+        if(image == null) {
+            vectors[0] = image = this.generateImage();
+        }
     }
 
-    private void generateImage() {
+    private BufferedImage generateImage() {
         BufferedImage image = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = image.createGraphics();
         try {
             Image icon = ImageIO.read(new File("./res/bomb.png"))
-                    .getScaledInstance(60,60, Image.SCALE_FAST);
+                    .getScaledInstance(60,60, Image.SCALE_SMOOTH);
 
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -31,7 +34,7 @@ public class Bomb extends DefaultShape {
             g2d.dispose();
         } catch (IOException ignored) {}
 
-        vectors[0] = image;
+        return image;
     }
 
     @Override

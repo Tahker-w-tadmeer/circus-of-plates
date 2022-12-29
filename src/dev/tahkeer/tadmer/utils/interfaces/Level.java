@@ -1,4 +1,4 @@
-package dev.tahkeer.tadmer.model.interfaces;
+package dev.tahkeer.tadmer.utils.interfaces;
 
 public interface Level {
     String name();

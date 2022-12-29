@@ -1,4 +1,4 @@
-package dev.tahkeer.tadmer.controller.factories;
+package dev.tahkeer.tadmer.utils.factories;
 
 import dev.tahkeer.tadmer.model.Clown;
 

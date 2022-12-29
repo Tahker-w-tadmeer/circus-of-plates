@@ -1,6 +1,6 @@
-package dev.tahkeer.tadmer.controller.factories;
+package dev.tahkeer.tadmer.utils.factories;
 
-import dev.tahkeer.tadmer.model.interfaces.Shape;
+import dev.tahkeer.tadmer.utils.interfaces.Shape;
 import dev.tahkeer.tadmer.model.shapes.Bomb;
 import dev.tahkeer.tadmer.model.shapes.Plate;
 import dev.tahkeer.tadmer.model.shapes.Bullet;
@@ -20,7 +20,7 @@ public class ShapeFactory  {
     private static final HashMap<String, Integer> shapes = new HashMap<>() {{
         put("bullet", 50);
         put("plate", 50);
-        put("bomb", 2);
+        put("bomb", 10);
     }};
 
     public static Shape generate(int x, int y) {
@@ -41,7 +41,7 @@ public class ShapeFactory  {
             return new Bullet(x, y, colors[new Random().nextInt(colors.length)]);
 
         if("bomb".equalsIgnoreCase(type))
-            return new Bomb(x, y, colors[new Random().nextInt(colors.length)]);
+            return new Bomb(x, y);
 
         return new Plate(x, y, colors[new Random().nextInt(colors.length)]);
     }

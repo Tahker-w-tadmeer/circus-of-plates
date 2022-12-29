@@ -1,6 +1,6 @@
 package dev.tahkeer.tadmer.model.levels;
 
-import dev.tahkeer.tadmer.model.interfaces.Level;
+import dev.tahkeer.tadmer.utils.interfaces.Level;
 
 public class MediumLevel implements Level {
     @Override

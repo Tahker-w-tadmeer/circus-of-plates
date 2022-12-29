@@ -1,8 +1,6 @@
 package dev.tahkeer.tadmer.view;
 
 import dev.tahkeer.tadmer.controller.Game;
-import dev.tahkeer.tadmer.model.Score;
-import dev.tahkeer.tadmer.model.interfaces.ScoreEventListener;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
 public class Application {

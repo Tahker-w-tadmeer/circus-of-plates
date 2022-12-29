@@ -1,7 +1,7 @@
 package dev.tahkeer.tadmer.controller;
 
-import dev.tahkeer.tadmer.controller.factories.ShapeFactory;
-import dev.tahkeer.tadmer.model.interfaces.Shape;
+import dev.tahkeer.tadmer.utils.factories.ShapeFactory;
+import dev.tahkeer.tadmer.utils.interfaces.Shape;
 import dev.tahkeer.tadmer.model.shapes.Platform;
 
 import java.util.Random;

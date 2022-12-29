@@ -1,4 +1,4 @@
-package dev.tahkeer.tadmer.model.interfaces;
+package dev.tahkeer.tadmer.utils.interfaces;
 
 public interface ScoreEventListener {
     void added(int oldScore, int score);

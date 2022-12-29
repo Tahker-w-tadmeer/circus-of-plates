@@ -1,5 +1,5 @@
 package dev.tahkeer.tadmer.model;
-import dev.tahkeer.tadmer.model.interfaces.Shape;
+import dev.tahkeer.tadmer.utils.interfaces.Shape;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -62,6 +62,16 @@ public class Hand {
         this.setY(this.heightOfShapes());
 
         return false;
+    }
+
+    public void removeShapes(int number) {
+        for (int i = 0; i < number; i++) {
+            if(shapes.size() == 0) {
+                return;
+            }
+
+            shapes.remove(shapes.size() - 1);
+        }
     }
 
     public int heightOfShapes() {
