@@ -1,5 +1,6 @@
 package dev.tahkeer.tadmer.controller;
 
+import dev.tahkeer.tadmer.utils.AsyncWaiter;
 import dev.tahkeer.tadmer.utils.factories.ClownFactory;
 import dev.tahkeer.tadmer.utils.factories.PlatformFactory;
 import dev.tahkeer.tadmer.model.Clown;

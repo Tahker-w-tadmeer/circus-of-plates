@@ -1,4 +1,4 @@
-package dev.tahkeer.tadmer.controller;
+package dev.tahkeer.tadmer.utils;
 
 import java.time.Duration;
 
