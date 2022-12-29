@@ -1,8 +1,5 @@
 package dev.tahkeer.tadmer.controller;
 
-import dev.tahkeer.tadmer.controller.factories.ClownFactory;
-import dev.tahkeer.tadmer.controller.factories.PlatformFactory;
-import dev.tahkeer.tadmer.controller.factories.ShapeFactory;
 import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.Score;
 import dev.tahkeer.tadmer.model.interfaces.Level;
@@ -12,8 +9,6 @@ import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import dev.tahkeer.tadmer.model.shapes.Platform;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
-
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -85,7 +80,7 @@ public class Game implements World {
             GenerateEngine.generate(shapes,platforms,this);
             lastTime = System.currentTimeMillis();
         }
-        MoveEngine.move(shapes, clowns, platforms);
+        MoveEngine.move(shapes, clowns, platforms,this);
         return true;
     }
 
@@ -102,6 +97,10 @@ public class Game implements World {
     @Override
     public int getControlSpeed() { // in millis
         return level.controlSpeed();
+    }
+
+    protected void GameOver(){
+        isGameOver= true;
     }
 
     private static final class GameHolder {

@@ -14,7 +14,6 @@ public class GenerateEngine {
     protected static void generate(List<Shape>shapes, List<Platform>platforms,Game game) {
         for (Platform platform : platforms) {
             Shape shape;
-
             if (shouldGenerateShape(30)) {
                 shape = ShapeFactory.generate(platform.getX(), platform.getY());
                 shape.setY(shape.getY() - shape.getHeight());

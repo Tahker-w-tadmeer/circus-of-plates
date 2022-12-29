@@ -7,7 +7,7 @@ import dev.tahkeer.tadmer.model.shapes.Platform;
 import java.util.List;
 
 public class MoveEngine {
-    protected static void move(List<Shape>shapes, List<Clown>clowns, List<Platform>platforms) {
+    protected static void move(List<Shape>shapes, List<Clown>clowns, List<Platform>platforms,Game game) {
         for (Shape shape : shapes) {
             boolean shapeMoved = false;
 
@@ -28,10 +28,13 @@ public class MoveEngine {
             if (!shapeMoved) {
                 shape.fall();
             }
-        }
-        for (Clown clown : clowns) {
-            shapes.removeIf(clown::holds);
+            for (Clown clown : clowns) {
+                if (clown.getRealHeight()>=game.getHeight()+platforms.get(0).getY()-shape.getHeight()) {
+                    System.out.println("Game Over");
+                    game.GameOver();
+                }
+                shapes.removeIf(clown::holds);
+            }
         }
     }
-
 }
