@@ -1,7 +1,7 @@
 package dev.tahkeer.tadmer.model.shapes;
 
 import dev.tahkeer.tadmer.model.DefaultGameObject;
-import dev.tahkeer.tadmer.model.interfaces.Shape;
+import dev.tahkeer.tadmer.utils.interfaces.Shape;
 
 import java.awt.*;
 

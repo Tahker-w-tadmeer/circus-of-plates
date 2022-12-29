@@ -1,9 +1,9 @@
 package dev.tahkeer.tadmer.controller;
 
-import dev.tahkeer.tadmer.controller.factories.ClownFactory;
-import dev.tahkeer.tadmer.controller.factories.PlatformFactory;
+import dev.tahkeer.tadmer.utils.factories.ClownFactory;
+import dev.tahkeer.tadmer.utils.factories.PlatformFactory;
 import dev.tahkeer.tadmer.model.Clown;
-import dev.tahkeer.tadmer.model.interfaces.Level;
+import dev.tahkeer.tadmer.utils.interfaces.Level;
 import dev.tahkeer.tadmer.model.shapes.Platform;
 
 import java.time.Duration;
@@ -18,7 +18,7 @@ public class ChangeLevelController {
         for (int i = 0; i < game.level.numberOfClowns(); i++) {
             Clown clown = ClownFactory.generate(i * 400, game.getHeight());
 
-            clown.addShapesListener(game.score::addScore);
+            clown.addShapesListener(new ShapesChangedController(game));
 
             game.clowns.add(clown);
         }

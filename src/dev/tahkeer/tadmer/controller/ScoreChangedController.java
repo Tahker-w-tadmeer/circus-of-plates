@@ -1,7 +1,7 @@
 package dev.tahkeer.tadmer.controller;
 
-import dev.tahkeer.tadmer.model.interfaces.Level;
-import dev.tahkeer.tadmer.model.interfaces.ScoreEventListener;
+import dev.tahkeer.tadmer.utils.interfaces.Level;
+import dev.tahkeer.tadmer.utils.interfaces.ScoreEventListener;
 
 public class ScoreChangedController implements ScoreEventListener {
     private final Game game;

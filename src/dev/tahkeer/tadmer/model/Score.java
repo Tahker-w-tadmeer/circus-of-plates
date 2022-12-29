@@ -1,6 +1,6 @@
 package dev.tahkeer.tadmer.model;
 
-import dev.tahkeer.tadmer.model.interfaces.ScoreEventListener;
+import dev.tahkeer.tadmer.utils.interfaces.ScoreEventListener;
 
 import java.util.ArrayList;
 
@@ -8,15 +8,11 @@ public class Score {
 
     private Score() {}
 
-    private ArrayList<ScoreEventListener> listeners = new ArrayList<>();
+    private final ArrayList<ScoreEventListener> listeners = new ArrayList<>();
     private int score = 0;
 
     public void addListener(ScoreEventListener listener) {
         listeners.add(listener);
-    }
-
-    public void removeListener(ScoreEventListener listener) {
-        listeners.remove(listener);
     }
 
     public void addScore() {
@@ -28,6 +24,11 @@ public class Score {
     }
 
     public void setScore(int score) {
+        if(score < 0) {
+            this.score = 0;
+            return;
+        }
+
         if(score > this.score) {
             listeners.forEach((listener) -> listener.added(this.score, score));
         }

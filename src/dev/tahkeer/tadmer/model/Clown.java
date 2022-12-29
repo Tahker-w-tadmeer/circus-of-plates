@@ -1,7 +1,8 @@
 package dev.tahkeer.tadmer.model;
 
-import dev.tahkeer.tadmer.model.interfaces.Shape;
-import dev.tahkeer.tadmer.model.interfaces.ShapesEventListener;
+import dev.tahkeer.tadmer.utils.interfaces.Shape;
+import dev.tahkeer.tadmer.utils.interfaces.ShapesEventListener;
+import dev.tahkeer.tadmer.model.shapes.Bomb;
 import eg.edu.alexu.csd.oop.game.GameObject;
 
 import javax.imageio.ImageIO;
@@ -53,10 +54,6 @@ public class Clown extends DefaultGameObject implements GameObject {
         listeners.add(listener);
     }
 
-    public void removeShapesListener(ShapesEventListener listener) {
-        listeners.remove(listener);
-    }
-
     public boolean holds(Shape shape) {
         Point shapePoint = new Point(shape.getX(), shape.getY());
 
@@ -65,9 +62,16 @@ public class Clown extends DefaultGameObject implements GameObject {
         };
 
         for (Hand hand : hands) {
-            Point handPoint = new Point(hand.getX(), hand.getY());
-            if(Math.abs(handPoint.y - shapePoint.y) < 2
-                    && Math.abs(handPoint.x - shapePoint.x) < 40) {
+            if(Math.abs(hand.getY() - shapePoint.y) < 2
+                    && Math.abs(hand.getX() - shapePoint.x) < 40) {
+
+                if(shape instanceof Bomb) {
+                    listeners.forEach(ShapesEventListener::bombCaught);
+
+                    hand.removeShapes(2);
+
+                    return true;
+                }
 
                 if(hand.shapeLand(shape)) {
                     listeners.forEach(ShapesEventListener::collected);

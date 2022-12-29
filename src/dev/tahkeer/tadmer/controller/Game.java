@@ -2,8 +2,8 @@ package dev.tahkeer.tadmer.controller;
 
 import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.Score;
-import dev.tahkeer.tadmer.model.interfaces.Level;
-import dev.tahkeer.tadmer.model.interfaces.Shape;
+import dev.tahkeer.tadmer.utils.interfaces.Level;
+import dev.tahkeer.tadmer.utils.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import dev.tahkeer.tadmer.model.shapes.Platform;
 import eg.edu.alexu.csd.oop.game.GameObject;

@@ -1,7 +1,7 @@
 package dev.tahkeer.tadmer.controller;
 
 import dev.tahkeer.tadmer.model.Clown;
-import dev.tahkeer.tadmer.model.interfaces.Shape;
+import dev.tahkeer.tadmer.utils.interfaces.Shape;
 import dev.tahkeer.tadmer.model.shapes.Platform;
 
 public class MoveController {

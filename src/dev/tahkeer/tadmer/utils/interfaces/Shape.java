@@ -1,4 +1,4 @@
-package dev.tahkeer.tadmer.model.interfaces;
+package dev.tahkeer.tadmer.utils.interfaces;
 
 import eg.edu.alexu.csd.oop.game.GameObject;
 
