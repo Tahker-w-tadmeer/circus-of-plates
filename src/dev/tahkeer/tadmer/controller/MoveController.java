@@ -4,14 +4,12 @@ import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.interfaces.Shape;
 import dev.tahkeer.tadmer.model.shapes.Platform;
 
-import java.util.List;
-
-public class MoveEngine {
-    protected static void move(List<Shape>shapes, List<Clown>clowns, List<Platform>platforms) {
-        for (Shape shape : shapes) {
+public class MoveController {
+    protected static void move(Game game) {
+        for (Shape shape : game.shapes) {
             boolean shapeMoved = false;
 
-            for (Platform platform : platforms) {
+            for (Platform platform : game.platforms) {
                 if (platform.isShapeLeft(shape)) {
                     shape.setX(shape.getX() + 3);
                     shapeMoved = true;
@@ -29,8 +27,9 @@ public class MoveEngine {
                 shape.fall();
             }
         }
-        for (Clown clown : clowns) {
-            shapes.removeIf(clown::holds);
+
+        for (Clown clown : game.clowns) {
+            game.shapes.removeIf(clown::holds);
         }
     }
 
