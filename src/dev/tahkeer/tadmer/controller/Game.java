@@ -23,26 +23,24 @@ public class Game implements World {
     private final CopyOnWriteArrayList<Clown> clowns = new CopyOnWriteArrayList<>();
     private final CopyOnWriteArrayList<GameObject> constant = new CopyOnWriteArrayList<>();
     private final ArrayList<Platform> platforms = new ArrayList<>();
-    private Level level;
     private final Score score = Score.getInstance();
-
+    protected Level level;
+    private long lastTime = System.currentTimeMillis();
     private boolean isGameOver = false;
 
     private Game() {
-        changeLevel(new EasyLevel());
-
+        ChangeLevelEngine.changeLevel(new EasyLevel(), constant, clowns, platforms, this);
         score.addListener(new ScoreEventListener() {
+
             @Override
             public void added(int oldScore, int score) {
                 if(score >= level.score()) {
                     Level nextLevel = level.next();
-
                     if(nextLevel == null) {
                         isGameOver = true;
                         return;
                     }
-
-                    changeLevel(nextLevel);
+                    ChangeLevelEngine.changeLevel(nextLevel, constant, clowns, platforms, Game.this);
                 }
             }
 
@@ -50,7 +48,8 @@ public class Game implements World {
             public void removed(int oldScore, int score) {
 
             }
-        });
+
+         });
     }
 
     @Override
@@ -77,69 +76,17 @@ public class Game implements World {
     public int getHeight() { // frame height
         return 720;
     }
-
-    private boolean shouldGenerateShape(int percentage) {
-        return new Random().nextInt(100 / percentage) == 0;
+    private boolean shouldGenerate(){
+        return System.currentTimeMillis() - lastTime > level.speed() * 100L;
     }
-
-    private void generate() {
-        for (Platform platform : platforms) {
-            Shape shape;
-
-            if (shouldGenerateShape(30)) {
-                shape = ShapeFactory.generate(platform.getX(), platform.getY());
-                shape.setY(shape.getY() - shape.getHeight());
-                shapes.add(shape);
-            }
-
-            if (shouldGenerateShape(40)) {
-                shape = ShapeFactory.generate(platform.getX() + this.getWidth() - 100, platform.getY());
-                shape.setY(shape.getY() - shape.getHeight());
-                shapes.add(shape);
-            }
-        }
-    }
-
-    long lastTime = System.currentTimeMillis();
-
     @Override
     public boolean refresh() {
-        if(isGameOver) {
-            return false;
-        }
-
-        if (System.currentTimeMillis() - lastTime > level.speed() * 100L) {
-            generate();
+        if(isGameOver) {return false;}
+        if (shouldGenerate()) {
+            GenerateEngine.generate(shapes,platforms,this);
             lastTime = System.currentTimeMillis();
         }
-
-        for (Shape shape : shapes) {
-            boolean shapeMoved = false;
-
-            for (Platform platform : platforms) {
-                if (platform.isShapeLeft(shape)) {
-                    shape.setX(shape.getX() + 3);
-                    shapeMoved = true;
-                    break;
-                }
-
-                if (platform.isShapeRight(shape)) {
-                    shape.setX(shape.getX() - 3);
-                    shapeMoved = true;
-                    break;
-                }
-            }
-
-            if (!shapeMoved) {
-                shape.fall();
-            }
-        }
-
-
-        for (Clown clown : clowns) {
-            shapes.removeIf(clown::holds);
-        }
-
+        MoveEngine.move(shapes, clowns, platforms);
         return true;
     }
 
@@ -158,30 +105,6 @@ public class Game implements World {
         return level.controlSpeed();
     }
 
-    private void changeLevel(Level level) {
-        constant.clear();
-
-        clowns.clear();
-
-        for (int i = 0; i < level.numberOfClowns(); i++) {
-            Clown clown = ClownFactory.generate(i * 400, this.getHeight());
-
-            clown.addShapesListener(score::addScore);
-
-            clowns.add(clown);
-        }
-
-        platforms.clear();
-
-        Platform[] platformsArray = PlatformFactory.generate(level.numberOfQueues(), this.getWidth(), 60, 400);
-        for (Platform platform : platformsArray) {
-            platforms.add(platform);
-            constant.add(platform);
-        }
-
-        this.level = level;
-    }
-
     private static final class GameHolder {
         private static final Game game;
 
@@ -189,9 +112,7 @@ public class Game implements World {
             game = new Game();
         }
     }
-
     public static Game getInstance() {
         return GameHolder.game;
     }
-
 }
