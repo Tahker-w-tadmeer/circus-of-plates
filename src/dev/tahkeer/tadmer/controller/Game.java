@@ -24,13 +24,14 @@ public class Game implements World {
     private final CopyOnWriteArrayList<GameObject> constant = new CopyOnWriteArrayList<>();
     private final ArrayList<Platform> platforms = new ArrayList<>();
     private Level level;
+    private final Score score = Score.getInstance();
 
     private boolean isGameOver = false;
 
     private Game() {
         changeLevel(new EasyLevel());
 
-        Score.getInstance().addListener(new ScoreEventListener() {
+        score.addListener(new ScoreEventListener() {
             @Override
             public void added(int oldScore, int score) {
                 if(score >= level.score()) {
@@ -144,7 +145,7 @@ public class Game implements World {
 
     @Override
     public String getStatus() {
-        return level.name() + " | Score: " + Score.getInstance().getScore();
+        return level.name() + " | Score: " + score.getScore();
     }
 
     @Override
@@ -165,7 +166,7 @@ public class Game implements World {
         for (int i = 0; i < level.numberOfClowns(); i++) {
             Clown clown = ClownFactory.generate(i * 400, this.getHeight());
 
-            clown.addShapesListener(() -> Score.getInstance().addScore());
+            clown.addShapesListener(score::addScore);
 
             clowns.add(clown);
         }
