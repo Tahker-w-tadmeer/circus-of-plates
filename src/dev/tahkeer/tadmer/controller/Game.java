@@ -9,7 +9,6 @@ import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import dev.tahkeer.tadmer.model.shapes.Platform;
 import eg.edu.alexu.csd.oop.game.GameObject;
 import eg.edu.alexu.csd.oop.game.World;
-
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
