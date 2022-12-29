@@ -26,11 +26,14 @@ public class MoveController {
             if (!shapeMoved) {
                 shape.fall();
             }
-        }
 
-        for (Clown clown : game.clowns) {
-            game.shapes.removeIf(clown::holds);
+            for (Clown clown : game.clowns) {
+                if (clown.getRealHeight() >= game.getHeight() + game.platforms.get(0).getY() - shape.getHeight()) {
+                    game.isGameOver = true;
+                }
+
+                game.shapes.removeIf(clown::holds);
+            }
         }
     }
-
 }

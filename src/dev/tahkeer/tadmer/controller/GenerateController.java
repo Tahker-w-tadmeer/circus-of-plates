@@ -15,7 +15,6 @@ public class GenerateController {
     protected static void generate(Game game) {
         for (Platform platform : game.platforms) {
             Shape shape;
-
             if (shouldGenerateShape(30)) {
                 shape = ShapeFactory.generate(platform.getX(), platform.getY());
                 shape.setY(shape.getY() - shape.getHeight());
