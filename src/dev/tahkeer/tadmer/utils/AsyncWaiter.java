@@ -17,16 +17,12 @@ public class AsyncWaiter {
         this.duration = duration;
     }
 
-    public boolean execute() {
-        boolean shouldExecute = System.currentTimeMillis() - lastTime > duration.toMillis();
-
-        if(shouldExecute) {
+    public void execute() {
+        if(System.currentTimeMillis() - lastTime > duration.toMillis()) {
             task.run();
 
             lastTime = System.currentTimeMillis();
         }
-
-        return shouldExecute;
     }
 
     public interface AsyncTask {
