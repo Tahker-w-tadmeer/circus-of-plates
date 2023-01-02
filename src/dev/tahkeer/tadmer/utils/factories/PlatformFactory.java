@@ -10,7 +10,7 @@ public class PlatformFactory {
         Platform[] platforms = new Platform[number];
 
         for (int i = 0; i < number; i++) {
-            platforms[i] =  new Platform(fullWidth, y * (i + 1), width - (100 * i), Color.black);
+            platforms[i] =  new Platform(fullWidth, y * (i + 1), width - (100 * i), Color.white);
         }
 
         return platforms;

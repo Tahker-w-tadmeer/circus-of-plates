@@ -1,6 +1,7 @@
 package dev.tahkeer.tadmer.controller;
 
 import dev.tahkeer.tadmer.utils.AsyncWaiter;
+import dev.tahkeer.tadmer.utils.Background;
 import dev.tahkeer.tadmer.utils.factories.ClownFactory;
 import dev.tahkeer.tadmer.utils.factories.PlatformFactory;
 import dev.tahkeer.tadmer.model.Clown;
@@ -24,6 +25,7 @@ public class ChangeLevelController {
             game.clowns.add(clown);
         }
 
+        game.constant.add(new Background());
         game.platforms.clear();
 
         Platform[] platformsArray = PlatformFactory.generate(level.numberOfQueues(), game.getWidth(), 60, 400);

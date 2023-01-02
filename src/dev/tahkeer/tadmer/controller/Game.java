@@ -3,6 +3,7 @@ package dev.tahkeer.tadmer.controller;
 import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.Score;
 import dev.tahkeer.tadmer.utils.AsyncWaiter;
+import dev.tahkeer.tadmer.utils.Background;
 import dev.tahkeer.tadmer.utils.interfaces.Level;
 import dev.tahkeer.tadmer.utils.interfaces.Shape;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
@@ -25,7 +26,6 @@ public class Game implements World {
 
     private Game() {
         ChangeLevelController.changeLevel(this, new EasyLevel());
-
         score.addListener(new ScoreChangedController(this));
     }
 
