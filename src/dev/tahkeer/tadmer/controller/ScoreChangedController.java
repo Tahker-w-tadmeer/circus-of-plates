@@ -12,14 +12,14 @@ public class ScoreChangedController implements ScoreEventListener {
 
     @Override
     public void added(int oldScore, int score) {
-        if (score >= game.level.score()) {
-            Level nextLevel = game.level.next();
+        if (score >= (int) game.level.get("score")) {
+            Level nextLevel = (Level) game.level.get("next");
             if (nextLevel == null) {
-                game.isGameOver = true;
+                game.finish();
                 return;
             }
 
-            ChangeLevelController.changeLevel(game, nextLevel);
+            game.setLevel(nextLevel);
         }
     }
 
