@@ -16,35 +16,30 @@ public class Clown extends DefaultGameObject implements GameObject {
     private final Hand leftHand = new Hand();
     private final Hand rightHand = new Hand();
     private final BufferedImage[] vectors = new BufferedImage[1];
-    private Image scaledImage;
+    private final BufferedImage image;
     private final int yOfClown;
     private final ArrayList<ShapesEventListener> listeners = new ArrayList<>();
 
     public Clown(int x, int y) {
-        this.setWidth(300);
+        try {
+            image = ImageIO.read(new File("./res/colored_clown.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         this.setX(x);
         yOfClown = y;
 
         leftHand.setY(this.getHeight());
         rightHand.setY(this.getHeight());
-
-        this.generateImage();
-
-        int widthDivided = getWidth() - getWidth()/19;
-        try {
-            scaledImage = ImageIO.read(new File("./res/colored_clown.png"))
-                    .getScaledInstance(widthDivided, (int) (widthDivided / this.aspectRatio())+50, Image.SCALE_SMOOTH);
-        } catch (IOException ignored) {}
     }
 
     @Override
     public void setX(int x) {
         super.setX(x);
 
-        leftHand.setX(x);
-        rightHand.setX(x + 2*(getWidth()*2/ 19)+150 );
-
+        leftHand.setX(x + 25);
+        rightHand.setX(x + this.getWidth() - 25);
     }
 
     @Override
@@ -55,15 +50,15 @@ public class Clown extends DefaultGameObject implements GameObject {
     }
 
     public boolean holds(Shape shape) {
-        Point shapePoint = new Point(shape.getX(), shape.getY());
+        Point shapePoint = new Point(shape.getX() + shape.getWidth()/2, shape.getY());
 
         Hand[] hands = new Hand[]{
                 leftHand, rightHand
         };
 
         for (Hand hand : hands) {
-            if(Math.abs(hand.getY() - shapePoint.y) < 2
-                    && Math.abs(hand.getX() - shapePoint.x) < 40) {
+            if(shapePoint.y - hand.getY() <= 5 && shapePoint.y - hand.getY() >= 0
+                    && Math.abs(hand.getX() - shapePoint.x) <= 50) {
 
                 if(shape instanceof Bomb) {
                     listeners.forEach(ShapesEventListener::bombCaught);
@@ -84,11 +79,25 @@ public class Clown extends DefaultGameObject implements GameObject {
         return false;
     }
     public int getRealHeight() {
-        return getHeight() + Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes()) ;
+        return getHeight() + Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes());
     }
 
-    private BufferedImage generateImage() {
+    @Override
+    public int getWidth() {
+        return image.getWidth();
+    }
 
+    @Override
+    public int getHeight() {
+        return image.getHeight();
+    }
+
+    @Override
+    public boolean isVisible() {
+        return true;
+    }
+
+    public BufferedImage generateImage() {
         BufferedImage clownImage = new BufferedImage(
                 getWidth(),
                 getRealHeight(),
@@ -98,41 +107,22 @@ public class Clown extends DefaultGameObject implements GameObject {
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        g2d.drawImage(scaledImage, 0, getRealHeight()-this.getHeight(), null);
+        g2d.drawImage(image, 0, getRealHeight()-this.getHeight(), null);
 
         g2d.dispose();
 
-        this.position.y = yOfClown - (getRealHeight() - this.getHeight()/3) - 20;
+        position.y = yOfClown - this.getRealHeight();
 
         return clownImage;
     }
 
-    protected void setWidth(int width) {
-        this.width = width;
-        this.height = (int) (width * this.aspectRatio());
-    }
-
-    protected void setHeight(int height) {
-        this.height = height;
-        this.width = (int) (height / this.aspectRatio());
-    }
-
-    private double aspectRatio() {
-        return 743 / 561D;
-    }
-
-    @Override
-    public boolean isVisible() {
-        return true;
-    }
-
     @Override
     public BufferedImage[] getSpriteImages() {
-        BufferedImage image = generateImage();
+        BufferedImage image = this.generateImage();
 
         Graphics2D g2d = image.createGraphics();
 
-        final int biggestY = Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes());
+        final int biggestY = Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes()) - 10;
 
         int lastY = biggestY;
         for (BufferedImage shapeImage : leftHand.getSpriteImages()) {
@@ -142,7 +132,7 @@ public class Clown extends DefaultGameObject implements GameObject {
 
         lastY = biggestY;
         for (BufferedImage shapeImage : rightHand.getSpriteImages()) {
-            g2d.drawImage(shapeImage, this.getWidth()-100, lastY, null);
+            g2d.drawImage(shapeImage, this.getWidth()-shapeImage.getWidth(), lastY, null);
             lastY -= shapeImage.getHeight();
         }
 
