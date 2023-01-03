@@ -3,6 +3,7 @@ package dev.tahkeer.tadmer.controller;
 import dev.tahkeer.tadmer.model.Clown;
 import dev.tahkeer.tadmer.model.Score;
 import dev.tahkeer.tadmer.utils.AsyncWaiter;
+import dev.tahkeer.tadmer.utils.Background;
 import dev.tahkeer.tadmer.utils.PlatformIterator;
 import dev.tahkeer.tadmer.utils.factories.ClownFactory;
 import dev.tahkeer.tadmer.utils.factories.PlatformFactory;
@@ -31,7 +32,6 @@ public class Game implements World {
 
     private Game() {
         this.setLevel(new EasyLevel());
-
         score.addListener(new ScoreChangedController(this));
     }
 
@@ -56,6 +56,8 @@ public class Game implements World {
 
         constant.clear();
         clowns.clear();
+
+        constant.add(new Background());
 
         for (int i = 0; i < (int) level.get("numberOfClowns"); i++) {
             Clown clown = ClownFactory.generate(i * 400, this.getHeight());
