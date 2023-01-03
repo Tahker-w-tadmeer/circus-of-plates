@@ -2,42 +2,54 @@ package dev.tahkeer.tadmer.model.levels;
 
 import dev.tahkeer.tadmer.utils.interfaces.Level;
 
-public class EasyLevel implements Level {
-    @Override
-    public String name() {return "Easy";}
+import java.util.HashMap;
 
-    @Override
+public class EasyLevel implements Level {
+    public String name() {
+        return "Easy";
+    }
+
     public int numberOfClowns() {
         return 1;
     }
 
-    @Override
     public int numberOfQueues() {
         return 2;
     }
 
-    @Override
     public int speed() {
         return 10;
     }
 
-    @Override
     public int controlSpeed() {
         return 20;
     }
 
-    @Override
     public int score() {
         return 50;
     }
 
-    @Override
     public Level next() {
         return new MediumLevel();
     }
 
-    @Override
     public Level previous() {
         return null;
+    }
+
+    @Override
+    public HashMap<String, Object> getProperties() {
+        return new HashMap<>(){
+            {
+                put("name", name());
+                put("numberOfClowns", numberOfClowns());
+                put("numberOfQueues", numberOfQueues());
+                put("speed", speed());
+                put("controlSpeed", controlSpeed());
+                put("score", score());
+                put("next", next());
+                put("previous", previous());
+            }
+        };
     }
 }
