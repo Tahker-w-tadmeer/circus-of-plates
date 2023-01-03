@@ -1,6 +1,6 @@
 package dev.tahkeer.tadmer.utils.interfaces;
 
-public interface Level {
+public interface Level extends LevelStrategy {
     String name();
 
     int numberOfClowns();

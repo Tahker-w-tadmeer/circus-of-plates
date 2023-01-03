@@ -1,15 +1,19 @@
 package dev.tahkeer.tadmer.utils.factories;
 
+import dev.tahkeer.tadmer.utils.Images;
 import dev.tahkeer.tadmer.utils.interfaces.Shape;
 import dev.tahkeer.tadmer.model.shapes.Bomb;
 import dev.tahkeer.tadmer.model.shapes.Plate;
 import dev.tahkeer.tadmer.model.shapes.Bullet;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
 
-public class ShapeFactory  {
+public class ShapeFactory {
     private static final Color[] colors = new Color[]{
             Color.blue,
             Color.orange,
@@ -40,8 +44,9 @@ public class ShapeFactory  {
         if("bullet".equalsIgnoreCase(type))
             return new Bullet(x, y, colors[new Random().nextInt(colors.length)]);
 
-        if("bomb".equalsIgnoreCase(type))
-            return new Bomb(x, y);
+        if("bomb".equalsIgnoreCase(type)) {
+            return new Bomb(x, y, Images.getBombImage());
+        }
 
         return new Plate(x, y, colors[new Random().nextInt(colors.length)]);
     }
