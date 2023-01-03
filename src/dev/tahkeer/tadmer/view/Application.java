@@ -4,6 +4,10 @@ import dev.tahkeer.tadmer.controller.Game;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import dev.tahkeer.tadmer.model.levels.HardLevel;
 import dev.tahkeer.tadmer.model.levels.MediumLevel;
+import dev.tahkeer.tadmer.utils.EasyLevelState;
+import dev.tahkeer.tadmer.utils.HardLevelState;
+import dev.tahkeer.tadmer.utils.LevelState;
+import dev.tahkeer.tadmer.utils.MediumLevelState;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
 import javax.swing.*;
@@ -39,22 +43,18 @@ public class Application {
     // Add levels menu
     private static void addLevelsMenu(Game game, JMenuBar menuBar) {
         JMenu menu = new JMenu("Levels");
-        JMenuItem level1 = new JMenuItem("Easy");
-        level1.addActionListener(e -> game.setLevel(new EasyLevel()));
-        level1.setAccelerator(KeyStroke.getKeyStroke('1'));
-
-        JMenuItem level2 = new JMenuItem("Medium");
-        level2.addActionListener(e -> game.setLevel(new MediumLevel()));
-        level2.setAccelerator(KeyStroke.getKeyStroke('2'));
-
-        JMenuItem level3 = new JMenuItem("Hard");
-        level3.addActionListener(e -> game.setLevel(new HardLevel()));
-        level3.setAccelerator(KeyStroke.getKeyStroke('3'));
-
-        menu.add(level1);
-        menu.add(level2);
-        menu.add(level3);
-
+        LevelState levelState=new LevelState();
+        EasyLevelState easyLevel=new EasyLevelState();
+        MediumLevelState mediumLevel=new MediumLevelState();
+        HardLevelState hardLevel=new HardLevelState();
+        easyLevel.doAction(levelState,game);
+        menu.add(levelState.getState().getLevel());
+        menuBar.add(menu);
+        mediumLevel.doAction(levelState,game);
+        menu.add(levelState.getState().getLevel());
+        menuBar.add(menu);
+        hardLevel.doAction(levelState,game);
+        menu.add(levelState.getState().getLevel());
         menuBar.add(menu);
     }
 }
