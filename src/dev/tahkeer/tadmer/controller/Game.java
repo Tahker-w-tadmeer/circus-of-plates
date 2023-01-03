@@ -20,10 +20,10 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game implements World {
-    final CopyOnWriteArrayList<Shape> shapes = new CopyOnWriteArrayList<>();
-    final CopyOnWriteArrayList<Clown> clowns = new CopyOnWriteArrayList<>();
-    final CopyOnWriteArrayList<GameObject> constant = new CopyOnWriteArrayList<>();
-    final ArrayList<Platform> platforms = new ArrayList<>();
+    final List<Shape> shapes = new CopyOnWriteArrayList<>();
+    final List<Clown> clowns = new CopyOnWriteArrayList<>();
+    final List<GameObject> constant = new CopyOnWriteArrayList<>();
+    final List<Platform> platforms = new ArrayList<>();
     final Score score = Score.getInstance();
     HashMap<String, Object> level;
     LevelStrategy levelStrategy;
