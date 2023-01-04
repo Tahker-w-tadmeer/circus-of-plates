@@ -4,13 +4,37 @@ import dev.tahkeer.tadmer.controller.Game;
 import dev.tahkeer.tadmer.model.levels.EasyLevel;
 import dev.tahkeer.tadmer.model.levels.HardLevel;
 import dev.tahkeer.tadmer.model.levels.MediumLevel;
+import dev.tahkeer.tadmer.utils.factories.ShapeFactory;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
 import javax.swing.*;
+import java.io.File;
 
 public class Application {
 
     public static void main(String[] args) {
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                return f.isDirectory();
+            }
+
+            @Override
+            public String getDescription() {
+                return "Folders containing images";
+            }
+        });
+
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int result = fileChooser.showOpenDialog(null);
+
+        if(result == JFileChooser.APPROVE_OPTION) {
+            ShapeFactory.getInstance(fileChooser.getSelectedFile().getAbsolutePath());
+        } else {
+            ShapeFactory.getInstance("./res/shapes");
+        }
 
         JMenuBar menuBar = new JMenuBar();
         Game game = Game.getInstance();
