@@ -3,9 +3,12 @@ package dev.tahkeer.tadmer.utils;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Timer;
 
 public class Sound {
     private static final String BOMB_EXPLOSION = "./res/bomb_explosion.wav";
+    private static final String Game_Sound = "./res/circus.wav";
+
 
     private static final Sound instance = new Sound();
 
@@ -23,7 +26,8 @@ public class Sound {
                         explosion.close();
                         try {
                             audioStream.close();
-                        } catch (IOException ignored) {}
+                        } catch (IOException ignored) {
+                        }
                     }
                 });
                 explosion.start();

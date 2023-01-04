@@ -28,7 +28,10 @@ public class Game implements World {
     HashMap<String, Object> level;
     LevelStrategy levelStrategy;
     AsyncWaiter shapeGenerator;
+    AsyncWaiter timerWaiter;
     private boolean isGameOver = false;
+
+    Duration timer;
 
     private int width;
     private int height;
@@ -39,11 +42,23 @@ public class Game implements World {
 
         this.setLevel(new EasyLevel());
         score.addListener(new ScoreChangedController(this));
+
+        timerWaiter = new AsyncWaiter(
+                () -> timer = timer.minusSeconds(1),
+                Duration.ofSeconds(1)
+        );
     }
 
     @Override
     public boolean refresh() {
         if (this.isFinished()) return false;
+
+        timerWaiter.execute();
+
+        if(timer.isZero() || timer.isNegative()) {
+            this.finish();
+            return false;
+        }
 
         shapeGenerator.execute();
 
@@ -58,6 +73,8 @@ public class Game implements World {
 
     public void setLevel(LevelStrategy levelStrategy) {
         resetScore();
+
+        timer = Duration.ofSeconds(59);
 
         this.level = levelStrategy.getProperties();
         this.levelStrategy = levelStrategy;
@@ -127,7 +144,15 @@ public class Game implements World {
 
     @Override
     public String getStatus() {
-        return level.get("name") + " | Score: " + score.getScore();
+        long minutes = 0;
+        long seconds = timer.toSeconds();
+
+        while(seconds >= 59) {
+            seconds -= 60;
+            minutes++;
+        }
+
+        return level.get("name") + " | Score: " + score.getScore() + " | Time: " + minutes + ":" + seconds;
     }
 
     @Override
