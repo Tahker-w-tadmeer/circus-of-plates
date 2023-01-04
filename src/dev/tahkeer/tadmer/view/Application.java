@@ -32,7 +32,7 @@ public class Application {
         if(result == JFileChooser.APPROVE_OPTION) {
             ShapeFactory.getInstance(fileChooser.getSelectedFile().getAbsolutePath());
         } else {
-            ShapeFactory.getInstance("./res/shapes");
+            ShapeFactory.getInstance("./res/shapes/shapes1");
         }
 
         GameController controller = new GameController(() -> game);

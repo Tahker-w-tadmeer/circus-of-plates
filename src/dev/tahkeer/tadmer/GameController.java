@@ -41,11 +41,7 @@ public final class GameController {
         menuBar.add(menu);
         
         newMenuItem.addActionListener(e -> {
-              gameFrame.dispose();
-              start();
-
             Game game = (Game) gameSupplier.get();
-
             game.setLevel(new EasyLevel());
             gameController.changeWorld(game);
         });
@@ -85,22 +81,22 @@ public final class GameController {
         World game = gameSupplier.get();
         this.gameController = GameEngine.start("Circus Of Plates", game, menuBar);
         this.gameFrame = (JFrame) menuBar.getParent().getParent().getParent();
-        
-        this.gameFrame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent windowEvent) {
-                if (JOptionPane.showConfirmDialog(gameFrame, "Are you sure you want to close this game?",
-                        "End Game?", JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                    
-                    gameFrame.dispose();
-                    
-                    //some code to return to game main window.
-                } else {
-                    gameFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-                }
-            }
-        });
+
+//        this.gameFrame.addWindowListener(new WindowAdapter() {
+//            @Override
+//            public void windowClosing(WindowEvent windowEvent) {
+//                if (JOptionPane.showConfirmDialog(gameFrame, "Are you sure you want to close this game?",
+//                        "End Game?", JOptionPane.YES_NO_OPTION,
+//                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+//
+//                    gameFrame.dispose();
+//
+//                    //some code to return to game main window.
+//                } else {
+//                    gameFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+//                }
+//            }
+//        });
     }
 
     public JFrame getGameFrame() {
