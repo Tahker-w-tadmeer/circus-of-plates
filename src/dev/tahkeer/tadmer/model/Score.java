@@ -23,6 +23,10 @@ public class Score {
         this.setScore(this.getScore() - 10);
     }
 
+    public void reset() {
+        this.setScore(0);
+    }
+
     public void setScore(int score) {
         if(score < 0) {
             this.score = 0;

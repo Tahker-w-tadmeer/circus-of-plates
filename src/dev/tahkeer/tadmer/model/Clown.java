@@ -34,6 +34,10 @@ public class Clown extends DefaultGameObject implements GameObject {
         rightHand.setY(this.getHeight());
     }
 
+    public int getHighestY() {
+        return Math.min(leftHand.getY(), rightHand.getY());
+    }
+
     @Override
     public void setX(int x) {
         super.setX(x);

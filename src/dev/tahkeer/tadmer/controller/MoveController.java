@@ -28,8 +28,11 @@ public class MoveController {
             }
 
             for (Clown clown : game.clowns) {
-                if (clown.getRealHeight() >= game.getHeight() + game.platforms.get(0).getY() - shape.getHeight()) {
+
+                if (clown.getHighestY() <= game.platforms.get(0).getY()) {
                     game.finish();
+
+                    return;
                 }
 
                 game.shapes.removeIf(clown::holds);

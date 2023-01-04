@@ -30,7 +30,13 @@ public class Game implements World {
     AsyncWaiter shapeGenerator;
     private boolean isGameOver = false;
 
-    private Game() {
+    private int width;
+    private int height;
+
+    private Game(int width, int height) {
+        this.width = width;
+        this.height = height;
+
         this.setLevel(new EasyLevel());
         score.addListener(new ScoreChangedController(this));
     }
@@ -46,13 +52,17 @@ public class Game implements World {
         return true;
     }
 
+    public void resetScore() {
+        score.reset();
+    }
+
     public void setLevel(LevelStrategy levelStrategy) {
+        resetScore();
+
         this.level = levelStrategy.getProperties();
         this.levelStrategy = levelStrategy;
 
-        if(this.isFinished()) {
-            return;
-        }
+        this.isGameOver = false;
 
         constant.clear();
         clowns.clear();
@@ -79,11 +89,11 @@ public class Game implements World {
         if(shapeGenerator == null) {
             shapeGenerator = new AsyncWaiter(
                     () -> GenerateController.generate(Game.this),
-                    Duration.ofMillis((int) level.get("speed") * 100L)
+                    Duration.ofMillis((int) level.get("speed") * 50L)
             );
         }
 
-        shapeGenerator.setDuration(Duration.ofMillis((int) level.get("speed") * 100L));
+        shapeGenerator.setDuration(Duration.ofMillis((int) level.get("speed") * 50L));
     }
 
     public boolean isFinished() {
@@ -110,10 +120,10 @@ public class Game implements World {
     }
 
     @Override
-    public int getWidth() { return 1280; }
+    public int getWidth() { return width; }
 
     @Override
-    public int getHeight() { return 720; }
+    public int getHeight() { return height; }
 
     @Override
     public String getStatus() {
@@ -130,15 +140,28 @@ public class Game implements World {
         return (int) level.get("controlSpeed");
     }
 
-    private static final class GameHolder {
-        private static final Game game;
 
-        static {
-            game = new Game();
+    private static final class GameHolder {
+        private static Game game;
+
+        private static Game getGame(){
+            return game;
+        }
+
+        private static Game getGame(int width, int height) {
+            if(game == null) {
+                game = new Game(width, height);
+            }
+
+            return game;
         }
     }
 
+    public static Game getInstance(int width, int height) {
+        return GameHolder.getGame(width, height);
+    }
+
     public static Game getInstance() {
-        return GameHolder.game;
+        return GameHolder.getGame();
     }
 }

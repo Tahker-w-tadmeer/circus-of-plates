@@ -90,6 +90,6 @@ public class ShapeFactory {
             return new MovableDynamicShape(x, y, dynamicShape);
         }
 
-        return new Plate(x, y, color);
+        return generate((String) shapes.keySet().toArray()[0], x, y);
     }
 }
