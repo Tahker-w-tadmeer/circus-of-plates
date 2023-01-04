@@ -78,7 +78,7 @@ public class Game implements World {
 
         if(shapeGenerator == null) {
             shapeGenerator = new AsyncWaiter(
-                    () -> GenerateController.generate(this),
+                    () -> GenerateController.generate(Game.this),
                     Duration.ofMillis((int) level.get("speed") * 100L)
             );
         }

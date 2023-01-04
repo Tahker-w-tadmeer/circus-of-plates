@@ -8,6 +8,7 @@ import dev.tahkeer.tadmer.utils.factories.ShapeFactory;
 import eg.edu.alexu.csd.oop.game.GameEngine;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import java.io.File;
 
 public class Application {
@@ -15,7 +16,7 @@ public class Application {
     public static void main(String[] args) {
 
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+        fileChooser.setFileFilter(new FileFilter() {
             @Override
             public boolean accept(File f) {
                 return f.isDirectory();

@@ -47,7 +47,6 @@ public class Platform extends DefaultShape {
     private void generateImage() {
         BufferedImage image = new BufferedImage(this.fullWidth, 10, BufferedImage.TYPE_INT_ARGB);
 
-
         Graphics2D g2d = image.createGraphics();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setStroke(new BasicStroke(10));
