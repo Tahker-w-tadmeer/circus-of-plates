@@ -61,8 +61,8 @@ public class Clown extends DefaultGameObject implements GameObject {
         };
 
         for (Hand hand : hands) {
-            if(shapePoint.y - hand.getY() <= 4 && shapePoint.y - hand.getY() >= 0
-                    && Math.abs(hand.getX() - shapePoint.x) <= 40) {
+            if(shapePoint.y - hand.getY() <= 3 && shapePoint.y - hand.getY() >= 0
+                    && Math.abs(hand.getX() - shapePoint.x) <= 50) {
 
                 if(shape instanceof Bomb) {
                     listeners.forEach(ShapesEventListener::bombCaught);
@@ -126,17 +126,17 @@ public class Clown extends DefaultGameObject implements GameObject {
 
         Graphics2D g2d = image.createGraphics();
 
-        final int biggestY = Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes()) - 10;
+        final int biggestY = Math.max(leftHand.heightOfShapes(), rightHand.heightOfShapes());
 
         int lastY = biggestY;
         for (BufferedImage shapeImage : leftHand.getSpriteImages()) {
-            g2d.drawImage(shapeImage, 0, lastY, null);
+            g2d.drawImage(shapeImage, 0, lastY - shapeImage.getHeight(), null);
             lastY -= shapeImage.getHeight();
         }
 
         lastY = biggestY;
         for (BufferedImage shapeImage : rightHand.getSpriteImages()) {
-            g2d.drawImage(shapeImage, this.getWidth()-shapeImage.getWidth(), lastY, null);
+            g2d.drawImage(shapeImage, this.getWidth() - shapeImage.getWidth(), lastY  - shapeImage.getHeight(), null);
             lastY -= shapeImage.getHeight();
         }
 

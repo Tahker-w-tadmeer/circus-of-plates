@@ -84,7 +84,7 @@ public class Hand {
         AtomicReference<Integer> lastHeight = new AtomicReference<>(0);
         shapes.forEach((shape) -> {
             shape.setX(x);
-            shape.setY(y + lastHeight.get() + this.getY());
+            shape.setY(originalY - lastHeight.get());
             lastHeight.set(lastHeight.get() + shape.getHeight());
 
             vectors.add(shape.getSpriteImages()[0]);

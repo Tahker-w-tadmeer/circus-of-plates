@@ -22,7 +22,7 @@ public class MainMenu extends JFrame {
     }
 
     public MainMenu() {
-        super("Circus of Plates - Thakeer w tadmeer");
+        super("Circus of Plates - Thakeer w tadmer");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(600, 400);
         this.setVisible(true);
