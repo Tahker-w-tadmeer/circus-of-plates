@@ -29,7 +29,7 @@ public class MoveController {
 
             for (Clown clown : game.clowns) {
 
-                if (clown.getHighestY() + 40 < game.platforms.get(0).getY()) {
+                if (clown.getHighestY() + 80 < game.platforms.get(0).getY()) {
                     game.finish();
 
                     return;

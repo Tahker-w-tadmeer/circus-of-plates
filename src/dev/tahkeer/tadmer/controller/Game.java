@@ -89,11 +89,11 @@ public class Game implements World {
         if(shapeGenerator == null) {
             shapeGenerator = new AsyncWaiter(
                     () -> GenerateController.generate(Game.this),
-                    Duration.ofMillis((int) level.get("speed") * 50L)
+                    Duration.ofMillis((int) level.get("speed") * 100L)
             );
         }
 
-        shapeGenerator.setDuration(Duration.ofMillis((int) level.get("speed") * 50L));
+        shapeGenerator.setDuration(Duration.ofMillis((int) level.get("speed") * 100L));
     }
 
     public boolean isFinished() {
@@ -149,9 +149,7 @@ public class Game implements World {
         }
 
         private static Game getGame(int width, int height) {
-            if(game == null) {
-                game = new Game(width, height);
-            }
+            game = new Game(width, height);
 
             return game;
         }

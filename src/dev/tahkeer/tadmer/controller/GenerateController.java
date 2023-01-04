@@ -17,13 +17,13 @@ public class GenerateController {
 
         for (Platform platform : game.platforms) {
             Shape shape;
-            if (shouldGenerateShape(30)) {
+            if (shouldGenerateShape(20)) {
                 shape = shapeFactory.generate(platform.getX(), platform.getY());
                 shape.setY(shape.getY() - shape.getHeight());
                 game.shapes.add(shape);
             }
 
-            if (shouldGenerateShape(40)) {
+            if (shouldGenerateShape(25)) {
                 shape = shapeFactory.generate(platform.getX() + game.getWidth() - 100, platform.getY());
                 shape.setY(shape.getY() - shape.getHeight());
                 game.shapes.add(shape);
