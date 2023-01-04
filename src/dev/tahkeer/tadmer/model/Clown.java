@@ -42,8 +42,8 @@ public class Clown extends DefaultGameObject implements GameObject {
     public void setX(int x) {
         super.setX(x);
 
-        leftHand.setX(x + 25);
-        rightHand.setX(x + this.getWidth() - 25);
+        leftHand.setX(x);
+        rightHand.setX(x + this.getWidth() - 50);
     }
 
     @Override
@@ -54,15 +54,15 @@ public class Clown extends DefaultGameObject implements GameObject {
     }
 
     public boolean holds(Shape shape) {
-        Point shapePoint = new Point(shape.getX() + shape.getWidth()/2, shape.getY());
+        Point shapePoint = new Point(shape.getX(), shape.getY());
 
         Hand[] hands = new Hand[]{
                 leftHand, rightHand
         };
 
         for (Hand hand : hands) {
-            if(shapePoint.y - hand.getY() <= 5 && shapePoint.y - hand.getY() >= 0
-                    && Math.abs(hand.getX() - shapePoint.x) <= 50) {
+            if(shapePoint.y - hand.getY() <= 4 && shapePoint.y - hand.getY() >= 0
+                    && Math.abs(hand.getX() - shapePoint.x) <= 40) {
 
                 if(shape instanceof Bomb) {
                     listeners.forEach(ShapesEventListener::bombCaught);
